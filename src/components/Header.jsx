@@ -23,10 +23,10 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           <span className="logoDesktop">
             <Logo
               size={60}                 // ✅ BIGGER box on desktop
-              fontSize={24}
+              fontSize={20}
               borderWidth={4}
               borderColor="#0B387C"
-              nameSize={24}
+              nameSize={20}
               nameColor="rgba(255,255,255,0.72)"
               nameLetterSpacing="0.14em"
               nameMaxWidth={420}        // ✅ desktop can be wider
@@ -41,7 +41,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               fontSize={20}
               borderWidth={3}
               borderColor="#0B387C"
-              nameSize={20}
+              nameSize={13}
               nameColor="rgba(255,255,255,0.72)"
               nameLetterSpacing="0.12em"
               nameMaxWidth={220}        // ✅ mobile wrap width
