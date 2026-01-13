@@ -45,7 +45,7 @@
 /* ✅ miniTitle matches theme */
 .miniTitle{
   font-size: 20px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 6px;
   font-weight: 300;
