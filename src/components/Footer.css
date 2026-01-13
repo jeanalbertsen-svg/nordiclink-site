@@ -1,0 +1,78 @@
+.footer{
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding: 26px 0;
+
+  /* ✅ match global dark background */
+  background: rgba(14,16,19,0.70);
+  backdrop-filter: blur(12px);
+}
+
+.footerInner{
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.6fr;
+  gap: 14px;
+
+  /* ✅ valid + consistent */
+  align-items: center;
+}
+
+/* brand / name */
+.footerBrand{
+  font-weight: 400;              /* ✅ unbold */
+  color: rgba(255,255,255,0.55); /* ✅ light gray */
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.footerEmail{
+  font-weight: 800;                  /* ✅ bold */
+  color: #8fd0ff;                    /* ✅ very light neon blue */
+  text-shadow: 0 0 10px rgba(143,208,255,0.20);
+}
+.footerEmail:hover{
+  color: #bfe7ff;
+  text-shadow: 0 0 14px rgba(143,208,255,0.35);
+}
+
+/* meta text */
+.footerMeta{
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* links */
+.footerLinks{
+  display: flex;
+  gap: 14px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.footerLinks a{
+  color: var(--neonWhite);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+.footerLinks a:hover{
+  opacity: 1;
+  color: #fff;
+}
+
+/* small copyright / bottom right */
+.footerSmall{
+  font-weight: 400;              /* ✅ unbold */
+  color: rgba(255,255,255,0.55); /* ✅ light gray */
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 820px){
+  .footerInner{ grid-template-columns: 1fr; }
+  .footerLinks{ justify-content: flex-start; }
+  .footerSmall{ text-align: left; }
+}

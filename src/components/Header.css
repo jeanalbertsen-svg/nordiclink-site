@@ -1,0 +1,117 @@
+.hero{
+  background: var(--navy);
+  color:#fff;
+
+  /* ✅ more fluid padding so it scales nicely */
+  padding: clamp(44px, 6vw, 72px) 0;
+}
+
+.heroInner{
+  max-width: 720px;
+}
+
+/* ✅ badge slightly smaller + consistent */
+.heroBadge{
+  display:inline-block;
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 14px;
+}
+
+/* ✅ title scales across screens */
+.heroTitle{
+  margin: 0 0 16px;
+  font-size: clamp(34px, 5vw, 65px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-family: ui-serif, Georgia, "Adamina", Times, serif;
+}
+
+/* ✅ lead scales + less huge on mobile */
+.heroLead{
+  margin: 0 0 24px;
+  color: rgba(255,255,255,0.85);
+  font-size: clamp(16px, 2.2vw, 24px);
+  max-width: 60ch;
+}
+
+.heroActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 12px;
+}
+
+/* ✅ grid stays the same but slightly more breathing room */
+.copyGrid{
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  align-items:start;
+}
+
+/* ✅ CTA bar feels like your cards */
+.ctaBar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 14px;
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+
+  background: rgba(255,255,255,0.06);
+  box-shadow: var(--shadow);
+}
+
+.ctaTitle{
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.ctaText{
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ✅ Mobile: clean stacking + tighter type */
+@media (max-width: 820px){
+  .hero{ padding: 44px 0; }
+
+  .heroBadge{
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .heroTitle{
+    font-size: 34px;
+    line-height: 1.06;
+  }
+
+  .heroLead{
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .copyGrid{
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .ctaBar{
+    flex-direction: column;
+    align-items:flex-start;
+    padding: 16px;
+  }
+
+  .ctaTitle{ font-size: 15px; }
+  .ctaText{ font-size: 13px; }
+}
+
+/* ✅ Extra-small phones */
+@media (max-width: 520px){
+  .heroTitle{ font-size: 30px; }
+  .heroLead{ font-size: 15px; }
+}

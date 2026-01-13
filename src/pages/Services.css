@@ -1,0 +1,57 @@
+.servicesStack{
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+}
+
+/* ✅ Paper panels -> deep dark grey */
+.servicePanel{
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 22px;
+
+  background: #121417; /* ✅ deep dark grey */
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+}
+
+/* ✅ Header neon light blue */
+.servicePanel h3{
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.92); /* ✅ neon white */
+  letter-spacing: -0.01em;
+
+  /* ✅ White glow */
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.25),
+    0 0 16px rgba(255,255,255,0.14),
+    0 0 26px rgba(255,255,255,0.08);
+}
+
+/* ✅ paragraph readable */
+.servicePanel p{
+  margin: 0 0 16px;
+  color: rgba(255,255,255,0.72);
+  line-height: 2;
+}
+
+.twoCol{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ✅ miniTitle matches theme */
+.miniTitle{
+  font-size: 18px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.92); /* ✅ neon white */
+}
+
+@media (max-width: 820px){
+  .twoCol{ grid-template-columns: 1fr; }
+}
