@@ -44,7 +44,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               nameSize={12}
               nameColor="rgba(255,255,255,0.72)"
               nameLetterSpacing="0.12em"
-              nameMaxWidth={220}        // ✅ mobile wrap width
+              nameMaxWidth={260}        // ✅ mobile wrap width
               nameWhiteSpace="normal"   // ✅ allow wrapping on mobile
             />
           </span>
