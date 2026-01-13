@@ -22,7 +22,7 @@
 
   --shadow: 0 14px 40px rgba(0,0,0,0.30);
 
-  --container: 500px;
+  --container: 1000px;
   --gutter: 48px;
 }
 
@@ -68,7 +68,7 @@ img, svg, video, canvas{
 
 input, textarea, select, button{
   font: inherit;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .container{
@@ -86,7 +86,7 @@ input, textarea, select, button{
 
 h1, h2, h3, h4, h5, h6{
   font-family: Adamina, serif;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6{
 .muted{ color: var(--muted); }
 
 .label{
-  font-size: 14px;
+  font-size: 10px;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--muted);
@@ -116,13 +116,13 @@ h1, h2, h3, h4, h5, h6{
   align-items:center;
   justify-content:center;
   gap:10px;
-  padding: 14px 22px;
+  padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid transparent;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 12px;
   cursor:pointer;
   font-family: Poppins, Arial, sans-serif;
   transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5, h6{
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 16px;
   box-shadow: var(--shadow);
 }
 
@@ -164,7 +164,7 @@ h1, h2, h3, h4, h5, h6{
 .card h3{
   font-family: Adamina, serif;
   font-weight: 700;
-  font-size: clamp(26px, 2.4vw, 28px);
+  font-size: clamp(20px, 2.4vw, 13px);
   margin: 0 0 14px 0;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -221,7 +221,7 @@ h1, h2, h3, h4, h5, h6{
 
 /* ✅ Neon light gray nav links (unbold) */
 .navLink{
-  font-size: 18px;
+  font-size: 13px;
   color: rgba(255,255,255,0.72);
   font-weight: 400;
   font-family: Poppins, Arial, sans-serif;
@@ -233,7 +233,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .navActive{
-  font-size: 18px;
+  font-size: 15px;
   color: rgba(255,255,255,0.95);
   font-weight: 600;
   font-family: Poppins, Arial, sans-serif;
@@ -407,12 +407,12 @@ h1, h2, h3, h4, h5, h6{
     line-height: 1.6;
   }
 
-  h1{ font-size: 16px; }
-  h2{ font-size: 16px; }
-  h3{ font-size: 16px; }
-  h4{ font-size: 16px; }
-  h5{ font-size: 16px; }
-  h6{ font-size: 15px; }
+  h1{ font-size: 13px; }
+  h2{ font-size: 13px; }
+  h3{ font-size: 13px; }
+  h4{ font-size: 13px; }
+  h5{ font-size: 13px; }
+  h6{ font-size: 13px; }
 
   .button{
     font-size: 12px;
@@ -422,7 +422,7 @@ h1, h2, h3, h4, h5, h6{
 
   .cardTitle,
   .card h3{
-    font-size: 16px !important;
+    font-size: 12px !important;
     margin-bottom: 10px;
   }
   .card h2{
@@ -447,7 +447,7 @@ h1, h2, h3, h4, h5, h6{
 }
 @media (max-width: 520px){
   .hero .heroLead{
-    font-size: 14px !important;
+    font-size: 12px !important;
     line-height: 1.5 !important;
   }
 }
@@ -456,6 +456,6 @@ h1, h2, h3, h4, h5, h6{
     width: auto;                /* ✅ no longer full width */
     justify-content: center;
     padding: 10px 16px;
-    font-size: 12px;
+    font-size: 10px;
   }
 }

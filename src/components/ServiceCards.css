@@ -22,7 +22,7 @@
 /* ✅ DESKTOP DEFAULT (bigger titles) */
 .serviceTitle{
   margin:0 0 10px;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--neonLight);
@@ -44,7 +44,7 @@
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .serviceLink:hover{
@@ -57,25 +57,25 @@
 @media (max-width: 820px){
   .grid3{ grid-template-columns: 1fr; }
 
-  .serviceTitle{ font-size: 22px; }
-  .serviceLink{  font-size: 16px; }
+  .serviceTitle{ font-size: 13px; }
+  .serviceLink{  font-size: 9px; }
 }
 
 /* ✅ Mobile */
 @media (max-width: 520px){
   .serviceTitle{
-    font-size: 18px;
+    font-size: 13px;
     line-height: 1.15;
   }
 
   .serviceText{
-    font-size: 15px;
+    font-size: 10px;
     line-height: 1.6;
   }
 
   /* ✅ FIXED: links smaller on mobile */
   .serviceLink{
-    font-size: 12px !important;
+    font-size: 10px !important;
     font-weight: 700;
     letter-spacing: 0.05em;
   }

@@ -19,7 +19,7 @@
 
 .heroTitle{
   margin: 0 0 16px;
-  font-size: 65px;
+  font-size: 35px;
   line-height: 1.00;
   letter-spacing: -0.03em;
   font-family: ui-serif, Georgia, "Adamina", Times, serif;
@@ -28,7 +28,7 @@
 .heroLead{
   margin: 0 0 24px;
   color: rgba(255,255,255,0.85);
-  font-size: 24px;
+  font-size: 15px;
   max-width: 60ch;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .ctaTitle{ 
-  font-weight: 800; 
+  font-weight: 500; 
 }
 
 .ctaText{ 
@@ -72,14 +72,14 @@
 
   /* ✅ smaller headline on mobile */
   .heroTitle{ 
-    font-size: 28px; 
+    font-size: 24px; 
     line-height: 1.15;
      letter-spacing:0.01em;
   }
 
   /* ✅ NEW: smaller heroLead on mobile */
   .heroLead{
-    font-size: 16px;
+    font-size: 10px;
     line-height: 1.55;
     margin-bottom: 18px;
   }
@@ -90,7 +90,7 @@
   letter-spacing: 0.24em;
   text-transform: uppercase;
   opacity: 0.9;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
   }
 
   .copyGrid{ 
