@@ -22,7 +22,7 @@
 /* ✅ DESKTOP DEFAULT (bigger titles) */
 .serviceTitle{
   margin:0 0 10px;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--neonLight);
