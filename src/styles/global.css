@@ -22,7 +22,7 @@
 
   --shadow: 0 14px 40px rgba(0,0,0,0.30);
 
-  --container: 1240px;
+  --container: 500px;
   --gutter: 48px;
 }
 
@@ -48,7 +48,7 @@ body{
   background: var(--bg);
 
   font-family: Poppins, Arial, sans-serif;
-  font-size: 20px;
+  font-size: 13px;
 
   letter-spacing: normal;
   text-transform: none;
