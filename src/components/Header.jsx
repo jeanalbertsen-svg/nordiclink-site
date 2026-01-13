@@ -38,7 +38,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           <span className="logoMobile">
             <Logo
               size={40}                 // ✅ smaller box on mobile
-              fontSize={13}
+              fontSize={12}
               borderWidth={3}
               borderColor="#0B387C"
               nameSize={12}
