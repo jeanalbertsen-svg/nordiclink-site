@@ -44,11 +44,11 @@
 
 /* ✅ miniTitle matches theme */
 .miniTitle{
-  font-size: 24px;
-  letter-spacing: 0.10em;
+  font-size: 20px;
+  letter-spacing: 0.48em;
   text-transform: uppercase;
   margin-bottom: 6px;
-  font-weight: 800;
+  font-weight: 500;
   color: rgba(255,255,255,0.92); /* ✅ neon white */
 }
 
