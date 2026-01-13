@@ -84,6 +84,15 @@
     margin-bottom: 18px;
   }
 
+  .heroBadge{
+  display:inline-block;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 16px;
+  }
+
   .copyGrid{ 
     grid-template-columns: 1fr; 
   }
