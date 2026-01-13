@@ -22,11 +22,11 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           {/* ✅ DESKTOP LOGO */}
           <span className="logoDesktop">
             <Logo
-              size={60}                 // ✅ BIGGER box on desktop
-              fontSize={13}
+              size={120}                 // ✅ BIGGER box on desktop
+              fontSize={80}
               borderWidth={4}
               borderColor="#0B387C"
-              nameSize={13}
+              nameSize={100}
               nameColor="rgba(255,255,255,0.72)"
               nameLetterSpacing="0.14em"
               nameMaxWidth={420}        // ✅ desktop can be wider
@@ -37,11 +37,11 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           {/* ✅ MOBILE LOGO */}
           <span className="logoMobile">
             <Logo
-              size={50}                 // ✅ smaller box on mobile
-              fontSize={12}
+              size={60}                 // ✅ smaller box on mobile
+              fontSize={25}
               borderWidth={3}
               borderColor="#0B387C"
-              nameSize={12}
+              nameSize={20}
               nameColor="rgba(255,255,255,0.72)"
               nameLetterSpacing="0.12em"
               nameMaxWidth={220}        // ✅ mobile wrap width

@@ -28,7 +28,7 @@ export default function Logo({
   showName = true,
   name = "NORDICLINK CONSULTING",
   nameColor = "#0B387C",
-  nameSize = 16,
+  nameSize = 24,
   nameWeight = 700,
   nameLetterSpacing = "0.12em",
   nameMaxWidth = 360,

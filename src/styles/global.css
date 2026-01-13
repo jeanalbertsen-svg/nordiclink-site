@@ -48,13 +48,15 @@ body{
   background: var(--bg);
 
   font-family: Poppins, Arial, sans-serif;
-  font-size: 13px;
+
+  /* ✅ Bigger overall base size (desktop) */
+  font-size: 20px;
+  line-height: 1.75;
 
   letter-spacing: normal;
   text-transform: none;
 
   color: var(--ink);
-  line-height: 1.7;
 }
 
 a{ color: inherit; text-decoration: none; }
@@ -68,7 +70,7 @@ img, svg, video, canvas{
 
 input, textarea, select, button{
   font: inherit;
-  font-size: 12px;
+  font-size: 16px; /* ✅ clean */
 }
 
 .container{
@@ -86,15 +88,23 @@ input, textarea, select, button{
 
 h1, h2, h3, h4, h5, h6{
   font-family: Adamina, serif;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
 
+/* ✅ Clean scalable heading sizes (desktop) */
+h1{ font-size: clamp(44px, 4.2vw, 68px); line-height: 1.05; }
+h2{ font-size: clamp(34px, 3.2vw, 48px); line-height: 1.15; }
+h3{ font-size: clamp(24px, 2.2vw, 32px); line-height: 1.25; }
+h4{ font-size: 22px; line-height: 1.3; }
+h5{ font-size: 18px; line-height: 1.35; }
+h6{ font-size: 16px; line-height: 1.35; }
+
 .muted{ color: var(--muted); }
 
 .label{
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--muted);
@@ -108,7 +118,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /* =========================
-   Buttons
+   Buttons (Prydy-like)
 ========================= */
 
 .button{
@@ -116,16 +126,21 @@ h1, h2, h3, h4, h5, h6{
   align-items:center;
   justify-content:center;
   gap:10px;
-  padding: 8px 14px;
+
+  padding: 14px 22px;
   border-radius: 999px;
   border: 1px solid transparent;
+
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
+
   cursor:pointer;
   font-family: Poppins, Arial, sans-serif;
   transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+  white-space: nowrap;
 }
 
 .buttonPrimary{
@@ -156,7 +171,7 @@ h1, h2, h3, h4, h5, h6{
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 20px;
   box-shadow: var(--shadow);
 }
 
@@ -164,7 +179,7 @@ h1, h2, h3, h4, h5, h6{
 .card h3{
   font-family: Adamina, serif;
   font-weight: 700;
-  font-size: clamp(20px, 2.4vw, 13px);
+  font-size: clamp(26px, 2.4vw, 28px);
   margin: 0 0 14px 0;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -174,7 +189,7 @@ h1, h2, h3, h4, h5, h6{
 .list li{ margin: 8px 0; color: var(--muted); }
 
 /* =========================================================
-   ✅ HEADER (UPDATED: mobile + desktop friendly like prydy)
+   ✅ HEADER (mobile + desktop friendly like prydy)
 ========================================================= */
 
 .header{
@@ -219,9 +234,8 @@ h1, h2, h3, h4, h5, h6{
   margin-left: auto;
 }
 
-/* ✅ Neon light gray nav links (unbold) */
 .navLink{
-  font-size: 13px;
+  font-size: 18px;
   color: rgba(255,255,255,0.72);
   font-weight: 400;
   font-family: Poppins, Arial, sans-serif;
@@ -233,7 +247,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .navActive{
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(255,255,255,0.95);
   font-weight: 600;
   font-family: Poppins, Arial, sans-serif;
@@ -249,9 +263,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /* ✅ CTA visible on desktop */
-.headerCta{
-  display: inline-flex;
-}
+.headerCta{ display: inline-flex; }
 
 /* ✅ Burger hidden on desktop */
 .menuBtn{
@@ -259,33 +271,23 @@ h1, h2, h3, h4, h5, h6{
   width: 44px;
   height: 44px;
   border-radius: 14px;
-
-  border: none;                 /* ✅ remove border */
-  background: transparent;       /* ✅ cleaner look (optional) */
-
+  border: none;
+  background: transparent;
   gap: 5px;
   padding: 10px;
   cursor: pointer;
 }
-.menuBtn:hover{
-  background: rgba(255,255,255,0.06);
-}
-.menuBtn:active{
-  background: rgba(255,255,255,0.10);
-}
-
+.menuBtn:hover{ background: rgba(255,255,255,0.06); }
+.menuBtn:active{ background: rgba(255,255,255,0.10); transform: scale(0.98); }
 
 .menuBtn span{
   display: block;
   height: 2px;
-  width: 15px;                 /* ✅ clearer */
+  width: 15px;
   background: rgba(255,255,255,0.92);
   border-radius: 999px;
-  margin: 1px 0;               /* ✅ clean spacing */
+  margin: 1px 0;
 }
-
-/* Optional pressed feel */
-.menuBtn:active{ transform: scale(0.98); }
 
 /* Mobile menu */
 .mobileNavWrap{
@@ -326,9 +328,16 @@ h1, h2, h3, h4, h5, h6{
   justify-content: center;
 }
 
-/* ✅ MOBILE behavior (FIXED burger visibility + no overlap) */
+/* ✅ MOBILE behavior */
 @media (max-width: 900px){
-  /* ✅ Grid: burger | centered logo | spacer */
+  :root{ --gutter: 22px; }
+
+  /* ✅ Keep mobile readable (not smaller than desktop) */
+  body{
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
   .headerInner{
     display: grid;
     grid-template-columns: 44px 1fr 44px;
@@ -344,13 +353,13 @@ h1, h2, h3, h4, h5, h6{
     display: grid;
     place-items: center;
     justify-self: start;
-    z-index: 3; /* ✅ stays above logo */
+    z-index: 3;
   }
 
   .brand{
     justify-self: center;
     margin: 0;
-    max-width: 70vw;      /* ✅ prevents logo from pushing burger */
+    max-width: 70vw;
     overflow: hidden;
   }
 }
@@ -359,13 +368,10 @@ h1, h2, h3, h4, h5, h6{
    Hero headline
 ========================= */
 .heroTitle,
-.hero h1{
-  color: #BFE6FF;
-}
+.hero h1{ color: #BFE6FF; }
+
 .hero .muted,
-.hero p{
-  color: rgba(255,255,255,0.82);
-}
+.hero p{ color: rgba(255,255,255,0.82); }
 
 /* =========================
    Layout grids
@@ -381,14 +387,6 @@ h1, h2, h3, h4, h5, h6{
   .aboutGrid{ grid-template-columns: 1fr; }
 }
 
-@media (max-width: 520px){
-  :root{ --gutter: 16px; }
-  .button{
-    width: 100%;
-    justify-content: center;
-  }
-}
-
 /* Show only one logo version depending on screen size */
 .logoDesktop { display: inline-flex; }
 .logoMobile  { display: none; }
@@ -398,64 +396,50 @@ h1, h2, h3, h4, h5, h6{
   .logoMobile  { display: inline-flex; }
 }
 
-/* =========================================================
-   ✅ MOBILE TYPOGRAPHY SCALE DOWN
-========================================================= */
+/* =========================================
+   ✅ BIG, clean mobile typography + buttons
+========================================= */
 @media (max-width: 520px){
+  :root{ --gutter: 16px; }
+
+  /* ✅ Bigger readable mobile base */
   body{
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.75;
   }
 
-  h1{ font-size: 13px; }
-  h2{ font-size: 13px; }
-  h3{ font-size: 13px; }
-  h4{ font-size: 13px; }
-  h5{ font-size: 13px; }
-  h6{ font-size: 13px; }
+  /* ✅ Better mobile heading scale (no extreme line-height) */
+  h1{ font-size: 42px; line-height: 1.08; }
+  h2{ font-size: 32px; line-height: 1.15; }
+  h3{ font-size: 24px; line-height: 1.2; }
+  h4{ font-size: 20px; }
+  h5{ font-size: 18px; }
+  h6{ font-size: 16px; }
 
-  .button{
-    font-size: 12px;
-    padding: 10px 15px;
-    letter-spacing: 0.06em;
-  }
-
-  .cardTitle,
-  .card h3{
-    font-size: 12px !important;
-    margin-bottom: 10px;
-  }
-  .card h2{
-    font-size: 16px !important;
-    margin-bottom: 10px;
-  }
+  .label{ font-size: 13px; }
 
   .mLink,
   .mActive{
+    font-size: 18px;
+    padding: 14px 16px;
+  }
+
+  input, textarea, select{
     font-size: 16px;
     padding: 12px 14px;
   }
 
-  .label{
-    font-size: 12px;
+  /* ✅ Bigger tappable buttons on mobile */
+  .button{
+    padding: 14px 22px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
   }
 
-  input, textarea, select{
-    font-size: 12px;
-    padding: 10px 12px;
-  }
-}
-@media (max-width: 520px){
-  .hero .heroLead{
-    font-size: 12px !important;
-    line-height: 1.5 !important;
-  }
-}
-@media (max-width: 520px){
-  .button{
-    width: auto;                /* ✅ no longer full width */
+  .buttonPrimary,
+  .buttonGhost{
+    width: auto;
+    min-width: 170px;
     justify-content: center;
-    padding: 10px 16px;
-    font-size: 10px;
   }
 }
