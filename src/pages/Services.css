@@ -53,5 +53,24 @@
 }
 
 @media (max-width: 820px){
-  .twoCol{ grid-template-columns: 1fr; }
+  .twoCol{ grid-template-columns: 1fr;
+   }
+   .servicePanel h3{
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.92); /* ✅ neon white */
+  letter-spacing: -0.01em;}
+  .serviceText{
+    font-size: 15px;
+    line-height: 1.6;
+  }
+   .miniTitle{
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.92); /* ✅ neon white */
+}
 }

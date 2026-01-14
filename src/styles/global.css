@@ -268,7 +268,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 /* ✅ Burger hidden on desktop */
 .menuBtn{
   display: none;
-  width: 44px;
+  width: 46px;
   height: 44px;
   border-radius: 14px;
   border: none;
@@ -404,7 +404,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 
   /* ✅ Bigger readable mobile base */
   body{
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.75;
   }
 
