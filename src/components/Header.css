@@ -88,6 +88,7 @@
   .heroTitle{
     font-size: 34px;
     line-height: 1.06;
+    font-weight: 400;
   }
 
   .heroLead{
@@ -112,6 +113,6 @@
 
 /* ✅ Extra-small phones */
 @media (max-width: 520px){
-  .heroTitle{ font-size: 30px; }
+  .heroTitle{ font-size: 32px; }
   .heroLead{ font-size: 15px; }
 }

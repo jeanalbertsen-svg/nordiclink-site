@@ -41,7 +41,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               fontSize={12}
               borderWidth={3}
               borderColor="#0B387C"
-              nameSize={12}
+              nameSize={15}
               nameColor="rgba(255,255,255,0.72)"
               nameLetterSpacing="0.12em"
               nameMaxWidth={260}        // ✅ mobile wrap width
@@ -67,7 +67,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
             </NavLink>
           </nav>
 
-          <a href="/contact" className="button buttonPrimary headerCta">
+          <a href="/contact" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
             Book a Call
           </a>
         </div>

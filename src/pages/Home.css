@@ -79,7 +79,7 @@
 
   /* ✅ Mobile lead text larger */
   .heroLead{
-    font-size: 16px;      /* ✅ readable on mobile */
+    font-size: 20px;      /* ✅ readable on mobile */
     line-height: 1.65;
     margin-bottom: 20px;
   }

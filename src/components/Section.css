@@ -14,7 +14,7 @@
 }
 @media (max-width: 500px){
   .section{ padding: 42px 0; }
-  .sectionTitle{ font-size: 13px; }
+  .sectionTitle{ font-size: 18px; }
   .servicePanel h3{
     font-size: 10px;
   }
