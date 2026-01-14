@@ -66,10 +66,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               Contact
             </NavLink>
           </nav>
-
-          <a href="/contact" className="button buttonPrimary headerCta">
-            Book a Call
-          </a>
         </div>
       </div>
 
