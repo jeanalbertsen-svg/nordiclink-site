@@ -104,10 +104,11 @@
 /* ✅ Extra-small phones */
 @media (max-width: 520px){
   .heroTitle{
-    font-size: 38px;
+    font-size: 45px;
   }
 
   .heroLead{
     font-size: 15px;
   }
+  .card-title{font-size:18}
 }
