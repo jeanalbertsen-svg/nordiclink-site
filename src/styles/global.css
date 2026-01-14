@@ -273,7 +273,7 @@ h6{ font-size: 16px; line-height: 1.35; }
   border-radius: 14px;
   border: none;
   background: transparent;
-  gap: 5px;
+  gap: 2px;
   padding: 10px;
   cursor: pointer;
 }

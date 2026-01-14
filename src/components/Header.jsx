@@ -67,7 +67,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
             </NavLink>
           </nav>
 
-          <a href="/contact" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
+          <a href="/contact" className="button buttonPrimary headerCta">
             Book a Call
           </a>
         </div>
