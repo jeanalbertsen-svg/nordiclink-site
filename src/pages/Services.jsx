@@ -2,14 +2,18 @@ import { useMemo, useState } from "react";
 import Section from "../components/Section.jsx";
 import "./Services.css";
 
+// ✅ Import your own images (replace filenames as needed)
+import strategyImg from "../assets/strategy.jpg";
+import digitalImg from "../assets/digital.jpg";
+import crossborderImg from "../assets/crossborder.jpg";
+
 export default function Services() {
   const services = useMemo(
     () => [
       {
         id: "strategy",
         label: "Business Strategy",
-        image:
-          "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+        image: strategyImg,
         intro:
           "Clear strategic direction for organizations operating in complex and evolving markets. The focus is on structured analysis, practical insight, and actionable outcomes — ensuring strategy is both well-defined and executable.",
         topics: [
@@ -26,8 +30,7 @@ export default function Services() {
       {
         id: "digital",
         label: "Digital Transformation",
-        image:
-          "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1600&q=80",
+        image: digitalImg,
         intro:
           "Alignment of technology with business strategy through clear digital roadmaps, governance frameworks, and execution support. The result is purposeful modernization and sustainable digital capability.",
         topics: [
@@ -44,8 +47,7 @@ export default function Services() {
       {
         id: "crossborder",
         label: "Cross-Border Advisory",
-        image:
-          "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80",
+        image: crossborderImg,
         intro:
           "Strategic guidance for organizations operating across Nordic and Asian markets, addressing regulatory, operational, and cultural complexity to enable confident expansion and collaboration.",
         topics: [
@@ -102,6 +104,7 @@ export default function Services() {
           />
 
           <div className="serviceContent">
+            {/* ✅ Adds spacing from image via CSS */}
             <h3 className="serviceTitle">{selected.label}</h3>
             <p className="serviceIntro">{selected.intro}</p>
 
