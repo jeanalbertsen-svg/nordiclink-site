@@ -24,6 +24,12 @@
 
   --container: 1000px;
   --gutter: 48px;
+
+  /* ✅ NEW: modern dropdown tokens */
+  --glassBg: rgba(10,12,16,0.86);
+  --glassBorder: rgba(255,255,255,0.10);
+  --glassShadow: 0 24px 60px rgba(0,0,0,0.70);
+  --glassHover: rgba(255,255,255,0.08);
 }
 
 /* Base reset */
@@ -217,15 +223,6 @@ h6{ font-size: 16px; line-height: 1.35; }
   flex-shrink: 0;
 }
 
-/* ✅ Responsive logo */
-.brandLogo{
-  height: clamp(44px, 4vw, 66px);
-  width: auto;
-  display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 0 16px rgba(255,255,255,0.10));
-}
-
 /* ✅ Desktop nav */
 .navDesktop{
   display: flex;
@@ -262,9 +259,6 @@ h6{ font-size: 16px; line-height: 1.35; }
   margin-left: 8px;
 }
 
-/* ✅ CTA visible on desktop */
-.headerCta{ display: inline-flex; }
-
 /* ✅ Burger hidden on desktop */
 .menuBtn{
   display: none;
@@ -289,7 +283,85 @@ h6{ font-size: 16px; line-height: 1.35; }
   margin: 1px 0;
 }
 
-/* Mobile menu */
+/* =========================================================
+   ✅ NEW: DESKTOP Services dropdown (click-to-open)
+   - modern background + smaller font
+   - absolute overlay so it DOES NOT push links
+========================================================= */
+.navDropdownWrap{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navLinkBtn{
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+  color: inherit;
+}
+
+.navLinkBtnActive{
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 0 14px rgba(255,255,255,0.18);
+}
+
+/* ✅ modern glass dropdown */
+.navDropdown{
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 250px;
+  padding: 10px;
+  border-radius: 18px;
+
+  background: var(--glassBg);
+  border: 1px solid var(--glassBorder);
+  box-shadow: var(--glassShadow);
+  backdrop-filter: blur(16px);
+
+  z-index: 9999;
+  display: grid;
+  gap: 6px;
+}
+
+.navDropItem{
+  display: block;
+  width: 100%;
+  text-align: left;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  /* ✅ smaller font to avoid giant stacked look */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.86);
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: 0.2s ease;
+}
+
+.navDropItem:hover{
+  background: var(--glassHover);
+  border-color: rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.96);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   Mobile menu (your existing)
+========================================================= */
 .mobileNavWrap{
   border-top: 1px solid rgba(255,255,255,0.10);
   background: rgba(14,16,19,0.96);
@@ -328,11 +400,68 @@ h6{ font-size: 16px; line-height: 1.35; }
   justify-content: center;
 }
 
+/* =========================================================
+   ✅ NEW: MOBILE Services popover (if you use it)
+   - modern background + smaller font
+   - absolute overlay (won’t push links)
+========================================================= */
+.mobileServices{
+  position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+.mobileServicesPopover{
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(320px, 88vw);
+  padding: 12px;
+  border-radius: 20px;
+
+  background: var(--glassBg);
+  border: 1px solid var(--glassBorder);
+  box-shadow: var(--glassShadow);
+  backdrop-filter: blur(18px);
+
+  display: grid;
+  gap: 8px;
+
+  z-index: 9999;
+}
+
+.mobileSubLink{
+  cursor: pointer;
+  text-align: center;
+
+  padding: 11px 12px;
+  border-radius: 14px;
+
+  /* ✅ smaller font */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.86);
+
+  transition: 0.2s ease;
+}
+
+.mobileSubLink:hover{
+  background: var(--glassHover);
+  border-color: rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.96);
+  transform: translateY(-1px);
+}
+
 /* ✅ MOBILE behavior */
 @media (max-width: 900px){
   :root{ --gutter: 22px; }
 
-  /* ✅ Keep mobile readable (not smaller than desktop) */
   body{
     font-size: 18px;
     line-height: 1.75;
@@ -402,13 +531,11 @@ h6{ font-size: 16px; line-height: 1.35; }
 @media (max-width: 520px){
   :root{ --gutter: 16px; }
 
-  /* ✅ Bigger readable mobile base */
   body{
     font-size: 15px;
     line-height: 1.75;
   }
 
-  /* ✅ Better mobile heading scale (no extreme line-height) */
   h1{ font-size: 64px; line-height: 1.08; font-weight: 400;}
   h2{ font-size: 24px; line-height: 1.15; }
   h3{ font-size: 24px; line-height: 1.2; }
@@ -429,7 +556,6 @@ h6{ font-size: 16px; line-height: 1.35; }
     padding: 12px 14px;
   }
 
-  /* ✅ Bigger tappable buttons on mobile */
   .button{
     padding: 14px 22px;
     font-size: 13px;
@@ -442,4 +568,7 @@ h6{ font-size: 16px; line-height: 1.35; }
     min-width: 170px;
     justify-content: center;
   }
+
+  /* ✅ Mobile dropdown still compact */
+  .mobileSubLink{ font-size: 13px; }
 }

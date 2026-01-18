@@ -2,6 +2,8 @@
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
+import "./Header.css";
+
 
 export default function Header({ mobileOpen, setMobileOpen }) {
   const [servicesOpen, setServicesOpen] = useState(false);       // desktop dropdown
