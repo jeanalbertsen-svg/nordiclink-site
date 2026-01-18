@@ -284,9 +284,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================================
-   ✅ NEW: DESKTOP Services dropdown (click-to-open)
-   - modern background + smaller font
-   - absolute overlay so it DOES NOT push links
+   ✅ DESKTOP Services dropdown (overlay)
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -308,7 +306,6 @@ h6{ font-size: 16px; line-height: 1.35; }
   text-shadow: 0 0 14px rgba(255,255,255,0.18);
 }
 
-/* ✅ modern glass dropdown */
 .navDropdown{
   position: absolute;
   top: calc(100% + 14px);
@@ -337,7 +334,6 @@ h6{ font-size: 16px; line-height: 1.35; }
   padding: 10px 12px;
   border-radius: 12px;
 
-  /* ✅ smaller font to avoid giant stacked look */
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -360,7 +356,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================================
-   Mobile menu (your existing)
+   Mobile menu
 ========================================================= */
 .mobileNavWrap{
   border-top: 1px solid rgba(255,255,255,0.10);
@@ -371,6 +367,7 @@ h6{ font-size: 16px; line-height: 1.35; }
   display: grid;
   gap: 10px;
   padding: 14px 0 20px 0;
+  position: relative; /* ✅ needed for overlay dropdown positioning */
 }
 
 .mLink{
@@ -401,61 +398,96 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================================
-   ✅ NEW: MOBILE Services popover (if you use it)
-   - modern background + smaller font
-   - absolute overlay (won’t push links)
+   ✅ MODERN MOBILE Services dropdown (overlay, no pushing)
+   Works with:
+   - .mServicesWrap
+   - .mServicesBtn
+   - .mChevron
+   - .mServicesBackdrop
+   - .mServicesDropdown
+   - .mSubLink
 ========================================================= */
-.mobileServices{
+
+.mServicesWrap{
   position: relative;
-  display: grid;
-  justify-items: center;
 }
 
-.mobileServicesPopover{
-  position: absolute;
-  top: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%);
+.mServicesBtn{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  width: min(320px, 88vw);
-  padding: 12px;
-  border-radius: 20px;
+/* Chevron */
+.mChevron{
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255,255,255,0.85);
+  border-bottom: 2px solid rgba(255,255,255,0.85);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+}
+.mChevron.open{
+  transform: rotate(-135deg);
+}
+
+/* Tap-outside backdrop (closes dropdown, doesn’t close menu) */
+.mServicesBackdrop{
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+}
+
+/* ✅ overlay dropdown */
+.mServicesDropdown{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 20;
+
+  border-radius: 18px;
+  padding: 10px;
 
   background: var(--glassBg);
   border: 1px solid var(--glassBorder);
   box-shadow: var(--glassShadow);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(16px);
 
   display: grid;
-  gap: 8px;
-
-  z-index: 9999;
+  gap: 10px;
 }
 
-.mobileSubLink{
-  cursor: pointer;
-  text-align: center;
+/* Dropdown items */
+.mSubLink{
+  display: flex;
+  align-items: center;
 
-  padding: 11px 12px;
+  padding: 14px 14px;
   border-radius: 14px;
 
-  /* ✅ smaller font */
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
 
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.86);
+  font-size: 16px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 600;
 
   transition: 0.2s ease;
 }
 
-.mobileSubLink:hover{
+.mSubLink:hover{
   background: var(--glassHover);
-  border-color: rgba(255,255,255,0.16);
-  color: rgba(255,255,255,0.96);
-  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.20);
+}
+
+.mSubLink:active{
+  transform: scale(0.99);
 }
 
 /* ✅ MOBILE behavior */
@@ -569,6 +601,6 @@ h6{ font-size: 16px; line-height: 1.35; }
     justify-content: center;
   }
 
-  /* ✅ Mobile dropdown still compact */
-  .mobileSubLink{ font-size: 13px; }
+  /* ✅ keep dropdown compact */
+  .mSubLink{ font-size: 15px; }
 }

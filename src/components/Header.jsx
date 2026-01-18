@@ -6,55 +6,27 @@ import "./Header.css";
 
 
 export default function Header({ mobileOpen, setMobileOpen }) {
-  const [servicesOpen, setServicesOpen] = useState(false);       // desktop dropdown
-  const [mServicesOpen, setMServicesOpen] = useState(false);     // mobile dropdown
+  const [servicesOpen, setServicesOpen] = useState(false);
 
-  const servicesWrapRef = useRef(null);
-  const mServicesWrapRef = useRef(null);
-
-  // Close dropdowns when clicking outside
+  // Close the services dropdown whenever the mobile menu closes
   useEffect(() => {
-    const onDown = (e) => {
-      if (servicesWrapRef.current && !servicesWrapRef.current.contains(e.target)) {
-        setServicesOpen(false);
-      }
-      if (mServicesWrapRef.current && !mServicesWrapRef.current.contains(e.target)) {
-        setMServicesOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", onDown);
-    document.addEventListener("touchstart", onDown);
-
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("touchstart", onDown);
-    };
-  }, []);
+    if (!mobileOpen) setServicesOpen(false);
+  }, [mobileOpen]);
 
   const closeAll = () => {
-    setMobileOpen(false);
     setServicesOpen(false);
-    setMServicesOpen(false);
-  };
-
-  const toggleMobile = () => {
-    setMobileOpen((v) => {
-      const next = !v;
-      if (!next) setMServicesOpen(false);
-      return next;
-    });
+    setMobileOpen(false);
   };
 
   return (
     <header className="header">
       <div className="container headerInner">
-        {/* ✅ Burger (mobile only via CSS) */}
+        {/* ✅ LEFT: burger (mobile only via CSS) */}
         <button
           className="menuBtn"
-          onClick={toggleMobile}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen ? "true" : "false"}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Open menu"
+          aria-expanded={mobileOpen}
         >
           <span />
           <span />
@@ -62,7 +34,8 @@ export default function Header({ mobileOpen, setMobileOpen }) {
         </button>
 
         {/* ✅ Brand */}
-        <Link to="/" className="brand" onClick={closeAll}>
+        <Link to="/" className="brand" onClick={() => closeAll()}>
+          {/* ✅ DESKTOP LOGO */}
           <span className="logoDesktop">
             <Logo
               size={60}
@@ -77,6 +50,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
             />
           </span>
 
+          {/* ✅ MOBILE LOGO */}
           <span className="logoMobile">
             <Logo
               size={60}
@@ -92,45 +66,19 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           </span>
         </Link>
 
-        {/* ✅ Desktop nav */}
+        {/* ✅ RIGHT: desktop nav */}
         <div className="headerRight">
           <nav className="navDesktop">
-            <NavLink to="/" className={({ isActive }) => (isActive ? "navActive" : "navLink")} onClick={closeAll}>
+            <NavLink to="/" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
               Home
             </NavLink>
-
-            {/* ✅ Desktop Services dropdown (click-to-open, absolute popover) */}
-            <div className="navDropdownWrap" ref={servicesWrapRef}>
-              <button
-                type="button"
-                className={servicesOpen ? "navLink navLinkBtn navLinkBtnActive" : "navLink navLinkBtn"}
-                onClick={() => setServicesOpen((v) => !v)}
-                aria-haspopup="menu"
-                aria-expanded={servicesOpen ? "true" : "false"}
-              >
-                Services
-              </button>
-
-              {servicesOpen && (
-                <div className="navDropdown" role="menu">
-                  <Link to="/services#strategy" className="navDropItem" role="menuitem" onClick={closeAll}>
-                    Business Strategy
-                  </Link>
-                  <Link to="/services#digital" className="navDropItem" role="menuitem" onClick={closeAll}>
-                    Digital Transformation
-                  </Link>
-                  <Link to="/services#crossborder" className="navDropItem" role="menuitem" onClick={closeAll}>
-                    Cross-Border Advisory
-                  </Link>
-                </div>
-              )}
-            </div>
-
-            <NavLink to="/about" className={({ isActive }) => (isActive ? "navActive" : "navLink")} onClick={closeAll}>
+            <NavLink to="/services" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
+              Services
+            </NavLink>
+            <NavLink to="/about" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
               About
             </NavLink>
-
-            <NavLink to="/contact" className={({ isActive }) => (isActive ? "navActive" : "navLink")} onClick={closeAll}>
+            <NavLink to="/contact" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
               Contact
             </NavLink>
           </nav>
@@ -140,47 +88,97 @@ export default function Header({ mobileOpen, setMobileOpen }) {
       {/* ✅ Mobile menu */}
       {mobileOpen && (
         <div className="mobileNavWrap">
+          {/* ✅ tap-outside backdrop for dropdown */}
+          {servicesOpen && (
+            <button
+              className="mServicesBackdrop"
+              aria-label="Close services menu"
+              onClick={() => setServicesOpen(false)}
+            />
+          )}
+
           <div className="container mobileNav">
-            <NavLink to="/" onClick={closeAll} className={({ isActive }) => (isActive ? "mActive" : "mLink")}>
+            <NavLink
+              to="/"
+              onClick={() => closeAll()}
+              className={({ isActive }) => (isActive ? "mActive" : "mLink")}
+            >
               Home
             </NavLink>
 
-            {/* ✅ Mobile Services dropdown (click-to-open popover, does NOT push links) */}
-            <div className="mDropdownWrap" ref={mServicesWrapRef}>
-              <button
-                type="button"
-                className={mServicesOpen ? "mLink mLinkBtn mLinkBtnActive" : "mLink mLinkBtn"}
-                onClick={() => setMServicesOpen((v) => !v)}
-                aria-haspopup="menu"
-                aria-expanded={mServicesOpen ? "true" : "false"}
-              >
-                Services
-              </button>
+            {/* ✅ Services row + dropdown (doesn't push other links) */}
+            <div className="mServicesWrap">
+              <div className="mServicesRow">
+                {/* Left side = go to Services page */}
+                <NavLink
+                  to="/services"
+                  onClick={() => closeAll()}
+                  className={({ isActive }) => (isActive ? "mActive mServicesMain" : "mLink mServicesMain")}
+                >
+                  Services
+                </NavLink>
 
-              {mServicesOpen && (
-                <div className="mDropdown" role="menu">
-                  <Link to="/services#strategy" className="mDropItem" role="menuitem" onClick={closeAll}>
+                {/* Right side = toggle dropdown */}
+                <button
+                  type="button"
+                  className="mServicesToggle"
+                  onClick={() => setServicesOpen((v) => !v)}
+                  aria-label="Toggle services dropdown"
+                  aria-expanded={servicesOpen}
+                >
+                  <span className={`chev ${servicesOpen ? "open" : ""}`} />
+                </button>
+              </div>
+
+              {servicesOpen && (
+                <div className="mServicesDropdown" role="menu">
+                  <NavLink
+                    to="/services?service=strategy"
+                    onClick={() => closeAll()}
+                    className="mSubLink"
+                    role="menuitem"
+                  >
                     Business Strategy
-                  </Link>
-                  <Link to="/services#digital" className="mDropItem" role="menuitem" onClick={closeAll}>
+                  </NavLink>
+
+                  <NavLink
+                    to="/services?service=digital"
+                    onClick={() => closeAll()}
+                    className="mSubLink"
+                    role="menuitem"
+                  >
                     Digital Transformation
-                  </Link>
-                  <Link to="/services#crossborder" className="mDropItem" role="menuitem" onClick={closeAll}>
+                  </NavLink>
+
+                  <NavLink
+                    to="/services?service=crossborder"
+                    onClick={() => closeAll()}
+                    className="mSubLink"
+                    role="menuitem"
+                  >
                     Cross-Border Advisory
-                  </Link>
+                  </NavLink>
                 </div>
               )}
             </div>
 
-            <NavLink to="/about" onClick={closeAll} className={({ isActive }) => (isActive ? "mActive" : "mLink")}>
+            <NavLink
+              to="/about"
+              onClick={() => closeAll()}
+              className={({ isActive }) => (isActive ? "mActive" : "mLink")}
+            >
               About
             </NavLink>
 
-            <NavLink to="/contact" onClick={closeAll} className={({ isActive }) => (isActive ? "mActive" : "mLink")}>
+            <NavLink
+              to="/contact"
+              onClick={() => closeAll()}
+              className={({ isActive }) => (isActive ? "mActive" : "mLink")}
+            >
               Contact
             </NavLink>
 
-            <a href="/contact" className="button buttonPrimary mCta" onClick={closeAll}>
+            <a href="/contact" className="button buttonPrimary mCta" onClick={() => closeAll()}>
               Book a Call
             </a>
           </div>
