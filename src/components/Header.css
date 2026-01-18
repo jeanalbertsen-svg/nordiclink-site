@@ -79,7 +79,8 @@
 
 /* =========================================================
    ✅ Desktop Services dropdown (CLICK ONLY, not hover)
-   - Does NOT push links
+   ✅ modern glass background + smaller font
+   ✅ does NOT push links
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -101,20 +102,30 @@
   text-shadow: 0 0 14px rgba(255,255,255,0.18);
 }
 
+/* ✅ premium dropdown panel */
 .navDropdown{
   position: absolute;
-  top: calc(100% + 12px);
-  left: 0;
-  min-width: 260px;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  min-width: 220px;
+  max-width: 280px;
 
   padding: 10px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(14,16,19,0.96);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
-  backdrop-filter: blur(10px);
+  border-radius: 18px;
 
-  z-index: 999; /* ✅ sits above everything */
+  /* ✅ Modern glass background */
+  background: rgba(10,12,16,0.86);
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.60);
+
+  z-index: 999; /* above everything */
+
+  display: grid;
+  gap: 6px;
 }
 
 .navDropItem{
@@ -122,20 +133,31 @@
   width: 100%;
   text-align: left;
 
-  padding: 12px 12px;
+  padding: 10px 12px;
   border-radius: 12px;
 
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
+  /* ✅ smaller + cleaner */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 
-  color: rgba(255,255,255,0.90);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+
+  color: rgba(255,255,255,0.86);
   cursor: pointer;
   font: inherit;
+
+  white-space: nowrap;
+
+  transition: 0.2s ease;
 }
 
 .navDropItem:hover{
   background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.95);
+  transform: translateY(-1px);
 }
 
 /* =========================================================
@@ -195,7 +217,7 @@
   padding: 42px 20px 34px;
 }
 
-/* Close X centered lower-ish like your screenshot */
+/* Close X centered lower-ish */
 .mobileClose{
   position: absolute;
   left: 50%;
@@ -242,54 +264,67 @@
 
 /* =========================================================
    ✅ Services popover (click-to-open)
+   ✅ modern glass
    ✅ DOES NOT push other links
 ========================================================= */
 .mobileServices{
-  position: relative; /* anchor */
+  position: relative;
   display: grid;
   justify-items: center;
 }
 
-/* ✅ the dropdown box floats over the menu */
+/* ✅ floating popover (clean modern look) */
 .mobileServicesPopover{
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
 
   width: min(320px, 88vw);
   padding: 12px;
 
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(14,16,19,0.96);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.55);
-  backdrop-filter: blur(10px);
+  border-radius: 20px;
+
+  /* ✅ Modern glass */
+  background: rgba(10,12,16,0.86);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.70);
 
   display: grid;
   gap: 8px;
 
-  z-index: 3000; /* ✅ above overlay content */
+  z-index: 3000;
 }
 
 .mobileSubLink{
-  font: inherit;
   cursor: pointer;
   text-align: center;
 
-  padding: 12px 12px;
+  padding: 11px 12px;
   border-radius: 14px;
 
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.90);
-}
-.mobileSubLink:hover{
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.18);
+  /* ✅ smaller font */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.86);
+
+  transition: 0.2s ease;
 }
 
-/* Small phones: bigger tap feel */
+.mobileSubLink:hover{
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.96);
+  transform: translateY(-1px);
+}
+
+/* Small phones */
 @media (max-width: 520px){
   .mobileMenu{ gap: 38px; }
   .mobileMenuLink{ font-size: 19px; }
