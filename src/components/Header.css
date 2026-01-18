@@ -1,58 +1,33 @@
-/* =========================================================
-   HEADER base (keep)
-========================================================= */
-.header{
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(14,16,19,0.70);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-}
+/* =========================
+   HEADER + NAV + DROPDOWNS
+   Matches src/components/Header.jsx
+========================= */
 
-.headerInner{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 14px 0;
-  min-height: 70px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-
-/* =========================================================
-   Burger
-========================================================= */
+/* ✅ Burger hidden on desktop */
 .menuBtn{
   display: none;
-  width: 44px;
+  width: 46px;
   height: 44px;
   border-radius: 14px;
   border: none;
   background: transparent;
+  gap: 2px;
   padding: 10px;
   cursor: pointer;
 }
 .menuBtn:hover{ background: rgba(255,255,255,0.06); }
 .menuBtn:active{ background: rgba(255,255,255,0.10); transform: scale(0.98); }
+
 .menuBtn span{
-  display:block;
-  height:2px;
-  width:18px;
-  margin: 2px 0;
+  display: block;
+  height: 2px;
+  width: 15px;
   background: rgba(255,255,255,0.92);
   border-radius: 999px;
+  margin: 1px 0;
 }
 
-/* =========================================================
-   Desktop nav
-========================================================= */
+/* ✅ Desktop nav */
 .navDesktop{
   display: flex;
   align-items: center;
@@ -64,23 +39,34 @@
   font-size: 18px;
   color: rgba(255,255,255,0.72);
   font-weight: 400;
+  font-family: Poppins, Arial, sans-serif;
   text-shadow: 0 0 8px rgba(255,255,255,0.10);
 }
 .navLink:hover{
   color: rgba(255,255,255,0.92);
+  text-shadow: 0 0 12px rgba(255,255,255,0.18);
 }
 
 .navActive{
   font-size: 18px;
   color: rgba(255,255,255,0.95);
   font-weight: 600;
+  font-family: Poppins, Arial, sans-serif;
   text-shadow: 0 0 14px rgba(255,255,255,0.22);
 }
 
+/* ✅ Right side */
+.headerRight{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 8px;
+}
+
 /* =========================================================
-   ✅ Desktop Services dropdown (CLICK ONLY, not hover)
-   ✅ modern glass background + smaller font
-   ✅ does NOT push links
+   ✅ Desktop Services dropdown (overlay, does NOT push links)
+   Matches:
+   .navDropdownWrap .navLinkBtn .navDropdown .navDropItem
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -88,15 +74,13 @@
   align-items: center;
 }
 
-/* button that looks like a link */
 .navLinkBtn{
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
   line-height: 1;
-  font: inherit;                /* ✅ ensure same font as links */
-  color: inherit;               /* ✅ look like normal link */
+  color: inherit;
 }
 
 .navLinkBtnActive{
@@ -104,30 +88,23 @@
   text-shadow: 0 0 14px rgba(255,255,255,0.18);
 }
 
-/* ✅ premium dropdown panel */
+/* ✅ modern glass dropdown */
 .navDropdown{
   position: absolute;
   top: calc(100% + 14px);
-
-  /* ✅ center under Services, prevents weird offset */
   left: 50%;
   transform: translateX(-50%);
 
-  min-width: 220px;
-  max-width: 280px;
-
+  width: 250px;
   padding: 10px;
   border-radius: 18px;
 
-  /* ✅ Modern glass background */
-  background: rgba(10,12,16,0.86);
+  background: var(--glassBg);
+  border: 1px solid var(--glassBorder);
+  box-shadow: var(--glassShadow);
   backdrop-filter: blur(16px);
 
-  border: 1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.60);
-
-  z-index: 999; /* ✅ above everything */
-
+  z-index: 9999;
   display: grid;
   gap: 6px;
 }
@@ -140,155 +117,112 @@
   padding: 10px 12px;
   border-radius: 12px;
 
-  /* ✅ smaller + cleaner */
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.01em;
-  line-height: 1.2;
 
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(255,255,255,0.04);
-
   color: rgba(255,255,255,0.86);
+
   cursor: pointer;
-
-  /* ✅ prevent ugly wrapping */
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition: 0.2s ease;
 }
 
 .navDropItem:hover{
-  background: rgba(255,255,255,0.08);
+  background: var(--glassHover);
   border-color: rgba(255,255,255,0.16);
-  color: rgba(255,255,255,0.95);
+  color: rgba(255,255,255,0.96);
   transform: translateY(-1px);
 }
 
-/* =========================================================
-   Mobile logo switching (keep)
-========================================================= */
-.logoDesktop { display: inline-flex; }
-.logoMobile  { display: none; }
-
-@media (max-width: 820px){
-  .logoDesktop { display: none; }
-  .logoMobile  { display: inline-flex; }
+.navDropItem:active{
+  transform: translateY(0);
 }
 
 /* =========================================================
-   ✅ Mobile header layout
+   MOBILE MENU
+   Matches:
+   .mobileNavWrap .mobileNav .mLink .mActive .mCta
 ========================================================= */
-@media (max-width: 900px){
-  .menuBtn{ display: grid; place-items:center; }
-
-  .headerInner{
-    display: grid;
-    grid-template-columns: 44px 1fr 44px;
-    align-items: center;
-  }
-
-  .navDesktop{ display:none; }
-  .headerRight{ display:none; }
-
-  .brand{
-    justify-self: center;
-    max-width: 70vw;
-    overflow: hidden;
-  }
+.mobileNavWrap{
+  border-top: 1px solid rgba(255,255,255,0.10);
+  background: rgba(14,16,19,0.96);
 }
 
-/* =========================================================
-   ✅ FULLSCREEN MOBILE MENU (like your screenshot)
-========================================================= */
-.mobileOverlay{
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: radial-gradient(
-    1200px 700px at 50% 20%,
-    rgba(11,42,85,0.35),
-    rgba(14,16,19,0.96)
-  );
-  backdrop-filter: blur(14px);
+.mobileNav{
   display: grid;
-  place-items: center;
-  padding: 28px 16px;
+  gap: 14px;
+  padding: 16px 0 22px 0;
+  position: relative; /* ✅ needed for overlay dropdown positioning */
 }
 
-.mobileOverlayInner{
-  width: min(520px, 92vw);
-  position: relative;
-  padding: 42px 20px 34px;
-}
-
-/* Close X centered lower-ish */
-.mobileClose{
-  position: absolute;
-  left: 50%;
-  bottom: -22px;
-  transform: translateX(-50%);
-  width: 54px;
-  height: 54px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.18);
+.mLink{
+  width: 100%;
+  padding: 18px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.75);
-  cursor: pointer;
-  font-size: 22px;
-}
-.mobileClose:hover{
-  background: rgba(255,255,255,0.08);
-}
 
-.mobileMenu{
-  display: grid;
-  gap: 34px;
-  text-align: center;
-}
-
-.mobileMenuLink{
+  font-size: 20px;
+  color: rgba(255,255,255,0.88);
   font-family: Poppins, Arial, sans-serif;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 18px;
-  color: rgba(255,255,255,0.85);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.mobileMenuLink:hover{
-  color: rgba(255,255,255,0.98);
+.mActive{
+  width: 100%;
+  padding: 18px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.10);
+
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.96);
+  font-family: Poppins, Arial, sans-serif;
 }
 
-.mobileMenuButton{
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
+.mCta{
+  margin-top: 6px;
+  width: 100%;
+  justify-content: center;
 }
 
 /* =========================================================
    ✅ MOBILE Services dropdown = SAME AS DESKTOP dropdown
-   Supports BOTH naming styles:
-   - mobileServices / mobileServicesBtn / mobileServicesPopover / mobileSubLink
-   - mServicesWrap / mServicesBtn / mServicesDropdown / mSubLink
+   Matches Header.jsx:
+   .mServicesWrap .mServicesBtn .mChevron .mServicesBackdrop .mServicesDropdown .mSubLink
 ========================================================= */
-
-/* Wrapper */
-.mobileServices,
 .mServicesWrap{
   position: relative;
 }
 
-/* Button row */
-.mobileServicesBtn,
+/* Keep Services row same as other menu cards */
 .mServicesBtn{
   width: 100%;
 }
 
-/* Tap-outside backdrop (if you use it) */
+/* Chevron */
+.mChevron{
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255,255,255,0.85);
+  border-bottom: 2px solid rgba(255,255,255,0.85);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+  opacity: 0.85;
+}
+.mChevron.open{
+  transform: rotate(-135deg);
+  opacity: 1;
+}
+
+/* Tap-outside backdrop (closes dropdown only) */
 .mServicesBackdrop{
   position: fixed;
   inset: 0;
@@ -299,15 +233,14 @@
   z-index: 10;
 }
 
-/* ✅ Dropdown panel (same as desktop .navDropdown) */
-.mobileServicesPopover,
+/* ✅ identical to .navDropdown */
 .mServicesDropdown{
   position: absolute;
   top: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
 
-  width: 250px;               /* ✅ same as desktop */
+  width: 250px;
   padding: 10px;
   border-radius: 18px;
 
@@ -321,14 +254,7 @@
   gap: 6px;
 }
 
-/* ✅ Remove any "SERVICES" label styling if present */
-.mobileServicesPopover::before,
-.mServicesDropdown::before{
-  content: none !important;
-}
-
-/* ✅ Dropdown items (same as desktop .navDropItem) */
-.mobileSubLink,
+/* ✅ identical to .navDropItem */
 .mSubLink{
   display: block;
   width: 100%;
@@ -337,7 +263,7 @@
   padding: 10px 12px;
   border-radius: 12px;
 
-  font-size: 14px;           /* ✅ same as desktop */
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.01em;
 
@@ -347,11 +273,9 @@
 
   cursor: pointer;
   white-space: nowrap;
-
   transition: 0.2s ease;
 }
 
-.mobileSubLink:hover,
 .mSubLink:hover{
   background: var(--glassHover);
   border-color: rgba(255,255,255,0.16);
@@ -359,15 +283,44 @@
   transform: translateY(-1px);
 }
 
-.mobileSubLink:active,
 .mSubLink:active{
   transform: translateY(0);
 }
 
 /* ✅ keep centered + not full width on small screens */
 @media (max-width: 520px){
-  .mobileServicesPopover,
   .mServicesDropdown{
     width: min(250px, 86vw);
+  }
+}
+
+/* =========================================================
+   ✅ Responsive header behavior
+========================================================= */
+@media (max-width: 900px){
+  :root{ --gutter: 22px; }
+
+  .headerInner{
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .navDesktop{ display: none; }
+  .headerRight{ display: none; }
+
+  .menuBtn{
+    display: grid;
+    place-items: center;
+    justify-self: start;
+    z-index: 3;
+  }
+
+  .brand{
+    justify-self: center;
+    margin: 0;
+    max-width: 70vw;
+    overflow: hidden;
   }
 }
