@@ -40,17 +40,17 @@ export default function Header({ mobileOpen, setMobileOpen }) {
     <header className="header">
       <div className="container headerInner">
         {/* ✅ LEFT: burger (mobile only via CSS) */}
-        <button
-          className="menuBtn"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Open menu"
-          aria-expanded={mobileOpen}
-          type="button"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+      <button
+        className="menuBtn"
+        onClick={() => setMobileOpen?.((v) => !v)}
+        aria-label="Toggle menu"
+        type="button"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
 
         {/* ✅ Brand */}
         <Link to="/" className="brand" onClick={() => setMobileOpen(false)}>
