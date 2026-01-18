@@ -65,8 +65,8 @@
 
 /* =========================================================
    ✅ Desktop Services dropdown (overlay, does NOT push links)
-   Matches:
-   .navDropdownWrap .navLinkBtn .navDropdown .navDropItem
+   Matches Header.jsx:
+   .navDropdownWrap .navServicesRow .navChevronBtn .navChevron .navDropdown .navDropItem
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -74,18 +74,42 @@
   align-items: center;
 }
 
-.navLinkBtn{
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  line-height: 1;
-  color: inherit;
+/* ✅ Link + chevron row */
+.navServicesRow{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.navLinkBtnActive{
-  color: rgba(255,255,255,0.92);
-  text-shadow: 0 0 14px rgba(255,255,255,0.18);
+/* ✅ Chevron button (small glass pill) */
+.navChevronBtn{
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.navChevronBtn:hover{
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.16);
+}
+.navChevronBtn:active{ transform: scale(0.98); }
+
+/* ✅ Chevron icon */
+.navChevron{
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid rgba(255,255,255,0.85);
+  border-bottom: 2px solid rgba(255,255,255,0.85);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+}
+.navChevronBtn.open .navChevron{
+  transform: rotate(-135deg);
 }
 
 /* ✅ modern glass dropdown */
@@ -153,19 +177,19 @@
 
 .mobileNav{
   display: grid;
-  gap: 14px;
-  padding: 16px 0 22px 0;
-  position: relative; /* ✅ needed for overlay dropdown positioning */
+  gap: 10px;                /* ✅ tighter */
+  padding: 14px 0 18px 0;   /* ✅ tighter */
+  position: relative;
 }
 
 .mLink{
   width: 100%;
-  padding: 18px 18px;
-  border-radius: 18px;
+  padding: 14px 16px;       /* ✅ less bulky */
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.05);
 
-  font-size: 20px;
+  font-size: 17px;          /* ✅ cleaner */
   color: rgba(255,255,255,0.88);
   font-family: Poppins, Arial, sans-serif;
 
@@ -176,12 +200,12 @@
 
 .mActive{
   width: 100%;
-  padding: 18px 18px;
-  border-radius: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.28);
   background: rgba(255,255,255,0.10);
 
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
   color: rgba(255,255,255,0.96);
   font-family: Poppins, Arial, sans-serif;
@@ -194,15 +218,15 @@
 }
 
 /* =========================================================
-   ✅ MOBILE Services dropdown = SAME AS DESKTOP dropdown
+   ✅ MOBILE Services dropdown
    Matches Header.jsx:
    .mServicesWrap .mServicesBtn .mChevron .mServicesBackdrop .mServicesDropdown .mSubLink
+   ✅ Styled like desktop BUT aligned for mobile (full-width)
 ========================================================= */
 .mServicesWrap{
   position: relative;
 }
 
-/* Keep Services row same as other menu cards */
 .mServicesBtn{
   width: 100%;
 }
@@ -233,14 +257,17 @@
   z-index: 10;
 }
 
-/* ✅ identical to .navDropdown */
+/* ✅ Glass dropdown panel (same tokens as desktop)
+   ✅ Mobile-friendly alignment (not ugly centered box)
+*/
 .mServicesDropdown{
   position: absolute;
-  top: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  transform: none;
 
-  width: 250px;
+  width: auto;
   padding: 10px;
   border-radius: 18px;
 
@@ -254,13 +281,13 @@
   gap: 6px;
 }
 
-/* ✅ identical to .navDropItem */
+/* ✅ Items (same style as desktop, slightly better tap area) */
 .mSubLink{
   display: block;
   width: 100%;
   text-align: left;
 
-  padding: 10px 12px;
+  padding: 12px 12px;
   border-radius: 12px;
 
   font-size: 14px;
@@ -285,13 +312,6 @@
 
 .mSubLink:active{
   transform: translateY(0);
-}
-
-/* ✅ keep centered + not full width on small screens */
-@media (max-width: 520px){
-  .mServicesDropdown{
-    width: min(250px, 86vw);
-  }
 }
 
 /* =========================================================

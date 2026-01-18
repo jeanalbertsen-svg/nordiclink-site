@@ -17,7 +17,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
 
   const isServicesRoute = location.pathname.startsWith("/services");
 
-  // Close Services popovers when closing mobile menu
+  // Close Services popover when closing mobile menu
   useEffect(() => {
     if (!mobileOpen) setMobileServicesOpen(false);
   }, [mobileOpen]);
@@ -39,10 +39,23 @@ export default function Header({ mobileOpen, setMobileOpen }) {
     }
     document.addEventListener("mousedown", onDocClick);
     document.addEventListener("touchstart", onDocClick, { passive: true });
+
     return () => {
       document.removeEventListener("mousedown", onDocClick);
       document.removeEventListener("touchstart", onDocClick);
     };
+  }, []);
+
+  // ESC closes dropdowns
+  useEffect(() => {
+    function onKeyDown(e) {
+      if (e.key === "Escape") {
+        setDeskServicesOpen(false);
+        setMobileServicesOpen(false);
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, []);
 
   const goService = (hash) => {
@@ -59,7 +72,8 @@ export default function Header({ mobileOpen, setMobileOpen }) {
         <button
           className="menuBtn"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Open menu"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
         >
           <span />
           <span />
@@ -107,22 +121,35 @@ export default function Header({ mobileOpen, setMobileOpen }) {
 
         {/* ✅ Desktop nav */}
         <div className="headerRight">
-          <nav className="navDesktop">
+          <nav className="navDesktop" aria-label="Primary">
             <NavLink to="/" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
               Home
             </NavLink>
 
-            {/* ✅ Desktop Services dropdown (overlay, does NOT push links) */}
+            {/* ✅ Services link + separate chevron dropdown (link works!) */}
             <div className="navDropdownWrap" ref={deskServicesRef}>
-              <button
-                type="button"
-                className={`navLinkBtn ${isServicesRoute ? "navLinkBtnActive" : ""}`}
-                aria-haspopup="menu"
-                aria-expanded={deskServicesOpen}
-                onClick={() => setDeskServicesOpen((v) => !v)}
-              >
-                <span className={isServicesRoute ? "navActive" : "navLink"}>Services</span>
-              </button>
+              <div className="navServicesRow">
+                {/* ✅ Services is a REAL link now */}
+                <NavLink
+                  to="/services"
+                  onClick={() => setDeskServicesOpen(false)}
+                  className={({ isActive }) => (isActive ? "navActive" : "navLink")}
+                >
+                  Services
+                </NavLink>
+
+                {/* ✅ Chevron toggles dropdown (does NOT navigate) */}
+                <button
+                  type="button"
+                  className={`navChevronBtn ${deskServicesOpen ? "open" : ""}`}
+                  aria-haspopup="menu"
+                  aria-expanded={deskServicesOpen}
+                  aria-label={deskServicesOpen ? "Close Services menu" : "Open Services menu"}
+                  onClick={() => setDeskServicesOpen((v) => !v)}
+                >
+                  <span className="navChevron" />
+                </button>
+              </div>
 
               {deskServicesOpen && (
                 <div className="navDropdown" role="menu" aria-label="Services">
@@ -145,6 +172,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
             <NavLink to="/about" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
               About
             </NavLink>
+
             <NavLink to="/contact" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
               Contact
             </NavLink>
@@ -167,11 +195,11 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               Home
             </NavLink>
 
-            {/* ✅ Mobile Services dropdown (overlay, modern, no pushing) */}
+            {/* ✅ Services dropdown (mobile) */}
             <div className="mServicesWrap" ref={mobileServicesRef}>
               <button
                 type="button"
-                className={`mLink mServicesBtn`}
+                className="mLink mServicesBtn"
                 onClick={() => setMobileServicesOpen((v) => !v)}
                 aria-expanded={mobileServicesOpen}
                 aria-controls="m-services-dropdown"
@@ -180,7 +208,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                 <span className={`mChevron ${mobileServicesOpen ? "open" : ""}`} />
               </button>
 
-              {/* ✅ Tap outside closes ONLY dropdown (not whole menu) */}
+              {/* ✅ Tap outside closes ONLY dropdown */}
               {mobileServicesOpen && (
                 <button
                   type="button"
@@ -191,7 +219,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               )}
 
               {mobileServicesOpen && (
-                <div id="m-services-dropdown" className="mServicesDropdown" role="menu">
+                <div id="m-services-dropdown" className="mServicesDropdown" role="menu" aria-label="Services">
                   <button className="mSubLink" onClick={() => goService("")} role="menuitem">
                     Services Overview
                   </button>
