@@ -25,7 +25,7 @@
   --container: 1000px;
   --gutter: 48px;
 
-  /* ✅ NEW: modern dropdown tokens */
+  /* ✅ Modern dropdown tokens */
   --glassBg: rgba(10,12,16,0.86);
   --glassBorder: rgba(255,255,255,0.10);
   --glassShadow: 0 24px 60px rgba(0,0,0,0.70);
@@ -76,7 +76,7 @@ img, svg, video, canvas{
 
 input, textarea, select, button{
   font: inherit;
-  font-size: 16px; /* ✅ clean */
+  font-size: 16px;
 }
 
 .container{
@@ -124,7 +124,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================
-   Buttons (Prydy-like)
+   Buttons
 ========================= */
 
 .button{
@@ -170,7 +170,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================
-   Cards (deep dark blue)
+   Cards
 ========================= */
 
 .card{
@@ -195,7 +195,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 .list li{ margin: 8px 0; color: var(--muted); }
 
 /* =========================================================
-   ✅ HEADER (mobile + desktop friendly like prydy)
+   HEADER
 ========================================================= */
 
 .header{
@@ -284,7 +284,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================================
-   ✅ DESKTOP Services dropdown (overlay)
+   DESKTOP Services dropdown (overlay)
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -356,7 +356,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================================
-   Mobile menu
+   MOBILE MENU
 ========================================================= */
 .mobileNavWrap{
   border-top: 1px solid rgba(255,255,255,0.10);
@@ -365,27 +365,35 @@ h6{ font-size: 16px; line-height: 1.35; }
 
 .mobileNav{
   display: grid;
-  gap: 10px;
-  padding: 14px 0 20px 0;
-  position: relative; /* ✅ needed for overlay dropdown positioning */
+  gap: 14px;
+  padding: 16px 0 22px 0;
+  position: relative;
 }
 
 .mLink{
-  padding: 14px 16px;
-  border-radius: 14px;
+  width: 100%;
+  padding: 18px 18px;
+  border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.05);
-  font-size: 18px;
-  color: rgba(255,255,255,0.86);
+
+  font-size: 20px;
+  color: rgba(255,255,255,0.88);
   font-family: Poppins, Arial, sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .mActive{
-  padding: 14px 16px;
-  border-radius: 14px;
+  width: 100%;
+  padding: 18px 18px;
+  border-radius: 18px;
   border: 1px solid rgba(255,255,255,0.28);
   background: rgba(255,255,255,0.10);
-  font-size: 18px;
+
+  font-size: 20px;
   font-weight: 700;
   color: rgba(255,255,255,0.96);
   font-family: Poppins, Arial, sans-serif;
@@ -399,40 +407,34 @@ h6{ font-size: 16px; line-height: 1.35; }
 
 /* =========================================================
    ✅ MODERN MOBILE Services dropdown (overlay, no pushing)
-   Works with:
-   - .mServicesWrap
-   - .mServicesBtn
-   - .mChevron
-   - .mServicesBackdrop
-   - .mServicesDropdown
-   - .mSubLink
+   (This replaces the “ugly plain text” effect.)
 ========================================================= */
 
 .mServicesWrap{
   position: relative;
 }
 
+/* button row looks same as the other menu cards */
 .mServicesBtn{
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
-/* Chevron */
+/* chevron */
 .mChevron{
   width: 10px;
   height: 10px;
   border-right: 2px solid rgba(255,255,255,0.85);
   border-bottom: 2px solid rgba(255,255,255,0.85);
   transform: rotate(45deg);
-  transition: transform 0.18s ease;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+  opacity: 0.85;
 }
 .mChevron.open{
   transform: rotate(-135deg);
+  opacity: 1;
 }
 
-/* Tap-outside backdrop (closes dropdown, doesn’t close menu) */
+/* tap outside backdrop */
 .mServicesBackdrop{
   position: fixed;
   inset: 0;
@@ -443,16 +445,16 @@ h6{ font-size: 16px; line-height: 1.35; }
   z-index: 10;
 }
 
-/* ✅ overlay dropdown */
+/* ✅ overlay dropdown panel (glass) */
 .mServicesDropdown{
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(100% + 10px);
+  top: calc(100% + 12px);
   z-index: 20;
 
-  border-radius: 18px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 14px;
 
   background: var(--glassBg);
   border: 1px solid var(--glassBorder);
@@ -463,8 +465,20 @@ h6{ font-size: 16px; line-height: 1.35; }
   gap: 10px;
 }
 
-/* Dropdown items */
+/* subtle label at top */
+.mServicesDropdown::before{
+  content: "SERVICES";
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.60);
+  padding: 0 4px 6px;
+}
+
+/* ✅ clean stacked items */
 .mSubLink{
+  width: 100%;
   display: flex;
   align-items: center;
 
@@ -475,19 +489,21 @@ h6{ font-size: 16px; line-height: 1.35; }
   background: rgba(255,255,255,0.05);
 
   font-size: 16px;
-  color: rgba(255,255,255,0.92);
+  color: rgba(255,255,255,0.94);
   font-weight: 600;
 
-  transition: 0.2s ease;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
 .mSubLink:hover{
-  background: var(--glassHover);
+  background: rgba(255,255,255,0.09);
   border-color: rgba(255,255,255,0.20);
+  transform: translateY(-1px);
 }
 
 .mSubLink:active{
-  transform: scale(0.99);
+  transform: translateY(0px);
+  background: rgba(255,255,255,0.11);
 }
 
 /* ✅ MOBILE behavior */
@@ -525,18 +541,13 @@ h6{ font-size: 16px; line-height: 1.35; }
   }
 }
 
-/* =========================
-   Hero headline
-========================= */
+/* Hero colors */
 .heroTitle,
 .hero h1{ color: #BFE6FF; }
-
 .hero .muted,
 .hero p{ color: rgba(255,255,255,0.82); }
 
-/* =========================
-   Layout grids
-========================= */
+/* Layout */
 .aboutGrid{
   display:grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -548,7 +559,6 @@ h6{ font-size: 16px; line-height: 1.35; }
   .aboutGrid{ grid-template-columns: 1fr; }
 }
 
-/* Show only one logo version depending on screen size */
 .logoDesktop { display: inline-flex; }
 .logoMobile  { display: none; }
 
@@ -558,7 +568,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================
-   ✅ BIG, clean mobile typography + buttons
+   Mobile typography
 ========================================= */
 @media (max-width: 520px){
   :root{ --gutter: 16px; }
@@ -579,8 +589,8 @@ h6{ font-size: 16px; line-height: 1.35; }
 
   .mLink,
   .mActive{
-    font-size: 18px;
-    padding: 14px 16px;
+    font-size: 19px;
+    padding: 18px 18px;
   }
 
   input, textarea, select{
@@ -601,6 +611,5 @@ h6{ font-size: 16px; line-height: 1.35; }
     justify-content: center;
   }
 
-  /* ✅ keep dropdown compact */
   .mSubLink{ font-size: 15px; }
 }
