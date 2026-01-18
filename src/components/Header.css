@@ -66,7 +66,8 @@
 /* =========================================================
    ✅ Desktop Services dropdown (overlay, does NOT push links)
    Matches Header.jsx:
-   .navDropdownWrap .navServicesRow .navChevronBtn .navChevron .navDropdown .navDropItem
+   .navDropdownWrap .navServicesRow .navChevronBtn .navChevron
+   .navDropdown.navDropdownModern .svcItem .svcIcon .svcText .svcTitle .svcDesc
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -112,57 +113,112 @@
   transform: rotate(-135deg);
 }
 
-/* ✅ modern glass dropdown */
+/* ✅ Base dropdown positioning (shared) */
 .navDropdown{
   position: absolute;
   top: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 9999;
+}
 
-  width: 250px;
+/* =========================================================
+   ✅ Modern desktop dropdown panel (cards + descriptions)
+   Used by Header.jsx: className="navDropdown navDropdownModern"
+========================================================= */
+.navDropdownModern{
+  min-width: 360px;
   padding: 10px;
   border-radius: 18px;
 
-  background: var(--glassBg);
-  border: 1px solid var(--glassBorder);
-  box-shadow: var(--glassShadow);
+  background: rgba(14, 18, 28, 0.92);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
-  z-index: 9999;
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
-.navDropItem{
-  display: block;
+/* Modern service “card” row */
+.svcItem{
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 12px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  color: rgba(255,255,255,0.92);
+  cursor: pointer;
   text-align: left;
 
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+}
+
+.svcItem:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(255,255,255,0.16);
+}
+
+.svcItem:active{
+  transform: translateY(0);
+}
+
+.svcIcon{
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  flex: 0 0 auto;
+
+  font-size: 18px;
+}
+
+.svcText{ display: grid; gap: 2px; }
+.svcTitle{
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+.svcDesc{
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.25;
+}
+
+.svcFooter{
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  margin-top: 2px;
+}
+
+.svcAll{
+  display: block;
+  text-align: center;
   padding: 10px 12px;
   border-radius: 12px;
+  text-decoration: none;
 
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.86);
-
-  cursor: pointer;
-  white-space: nowrap;
-  transition: 0.2s ease;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.92);
+  font-weight: 800;
 }
 
-.navDropItem:hover{
-  background: var(--glassHover);
-  border-color: rgba(255,255,255,0.16);
-  color: rgba(255,255,255,0.96);
-  transform: translateY(-1px);
-}
-
-.navDropItem:active{
-  transform: translateY(0);
+.svcAll:hover{
+  background: rgba(255,255,255,0.09);
 }
 
 /* =========================================================
@@ -220,15 +276,19 @@
 /* =========================================================
    ✅ MOBILE Services dropdown
    Matches Header.jsx:
-   .mServicesWrap .mServicesBtn .mChevron .mServicesBackdrop .mServicesDropdown .mSubLink
-   ✅ Styled like desktop BUT aligned for mobile (full-width)
+   .mServicesWrap .mServicesBtn .mChevron .mServicesBackdrop
+   .mServicesDropdown.mServicesDropdownModern .mSvcItem .mSvcIcon .mSvcText .mSvcTitle .mSvcDesc .mSvcAll
 ========================================================= */
 .mServicesWrap{
   position: relative;
+  z-index: 11; /* ensures dropdown sits above backdrop reliably */
 }
 
 .mServicesBtn{
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Chevron */
@@ -257,61 +317,107 @@
   z-index: 10;
 }
 
-/* ✅ Glass dropdown panel (same tokens as desktop)
-   ✅ Mobile-friendly alignment (not ugly centered box)
-*/
+/* ✅ Base mobile dropdown positioning (shared) */
 .mServicesDropdown{
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
   right: 0;
   transform: none;
+  z-index: 20;
+}
 
-  width: auto;
+/* =========================================================
+   ✅ Modern mobile dropdown panel (sheet-style + rows)
+   Used by Header.jsx: className="mServicesDropdown mServicesDropdownModern"
+========================================================= */
+.mServicesDropdownModern{
   padding: 10px;
   border-radius: 18px;
 
-  background: var(--glassBg);
-  border: 1px solid var(--glassBorder);
-  box-shadow: var(--glassShadow);
+  background: rgba(14, 18, 28, 0.92);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
-  z-index: 20;
   display: grid;
-  gap: 6px;
+  gap: 8px;
 }
 
-/* ✅ Items (same style as desktop, slightly better tap area) */
-.mSubLink{
-  display: block;
+/* Modern service row (mobile) */
+.mSvcItem{
   width: 100%;
-  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
   padding: 12px 12px;
-  border-radius: 12px;
+  border-radius: 16px;
 
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
 
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.86);
-
+  text-align: left;
   cursor: pointer;
-  white-space: nowrap;
-  transition: 0.2s ease;
+
+  transition: transform .16s ease, background .16s ease, border-color .16s ease;
 }
 
-.mSubLink:hover{
-  background: var(--glassHover);
-  border-color: rgba(255,255,255,0.16);
-  color: rgba(255,255,255,0.96);
+.mSvcItem:hover{
   transform: translateY(-1px);
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(255,255,255,0.16);
 }
 
-.mSubLink:active{
+.mSvcItem:active{
   transform: translateY(0);
+}
+
+.mSvcIcon{
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  flex: 0 0 auto;
+
+  font-size: 18px;
+}
+
+.mSvcText{ display: grid; gap: 2px; }
+.mSvcTitle{
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+.mSvcDesc{
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.25;
+}
+
+.mSvcAll{
+  margin-top: 4px;
+  display: block;
+  text-align: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+
+  text-decoration: none;
+  font-weight: 900;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.92);
+}
+
+.mSvcAll:hover{
+  background: rgba(255,255,255,0.09);
 }
 
 /* =========================================================
