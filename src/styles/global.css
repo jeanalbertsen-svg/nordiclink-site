@@ -285,8 +285,6 @@ h6{ font-size: 16px; line-height: 1.35; }
 
 /* =========================================================
    DESKTOP Services dropdown (overlay)
-   Updated to modern "card" dropdown used by Header.jsx:
-   .navDropdown.navDropdownModern + .svcItem... etc.
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -448,6 +446,9 @@ h6{ font-size: 16px; line-height: 1.35; }
 .mobileNavWrap{
   border-top: 1px solid rgba(255,255,255,0.10);
   background: rgba(14,16,19,0.96);
+
+  /* ✅ IMPORTANT: allow dropdown to render outside without being clipped */
+  overflow: visible;
 }
 
 .mobileNav{
@@ -455,6 +456,9 @@ h6{ font-size: 16px; line-height: 1.35; }
   gap: 14px;
   padding: 16px 0 22px 0;
   position: relative;
+
+  /* ✅ IMPORTANT: allow absolute dropdown to render properly */
+  overflow: visible;
 }
 
 .mLink{
@@ -493,10 +497,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================================
-   ✅ MODERN MOBILE Services dropdown (sheet-style rows)
-   Matches Header.jsx:
-   .mServicesWrap .mServicesBtn .mChevron .mServicesBackdrop
-   .mServicesDropdown.mServicesDropdownModern .mSvcItem .mSvcIcon .mSvcText .mSvcTitle .mSvcDesc .mSvcAll
+   ✅ MOBILE Services dropdown (make it look like a modern sheet)
 ========================================================= */
 .mServicesWrap{
   position: relative;
@@ -508,6 +509,21 @@ h6{ font-size: 16px; line-height: 1.35; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* ✅ Modern chevron (you were missing this in this file) */
+.mChevron{
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(255,255,255,0.80);
+  border-bottom: 2px solid rgba(255,255,255,0.80);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+  opacity: 0.85;
+}
+.mChevron.open{
+  transform: rotate(-135deg);
+  opacity: 1;
 }
 
 /* Tap-outside backdrop (closes dropdown only) */
@@ -531,6 +547,15 @@ h6{ font-size: 16px; line-height: 1.35; }
 
   width: auto;
   z-index: 20;
+
+  /* ✅ subtle entrance to feel “modern” */
+  animation: mDropIn .16s ease-out;
+  transform-origin: top center;
+}
+
+@keyframes mDropIn{
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* Modern mobile dropdown panel */
@@ -548,6 +573,7 @@ h6{ font-size: 16px; line-height: 1.35; }
   gap: 8px;
 }
 
+/* Modern rows */
 .mSvcItem{
   width: 100%;
   display: flex;
