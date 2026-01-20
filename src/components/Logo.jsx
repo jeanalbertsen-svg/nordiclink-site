@@ -84,8 +84,8 @@ export default function Logo({
           <div
             style={{
               color: "rgba(11,56,124,0.75)",
-              fontSize: 13,
-              fontWeight: "0.12em",
+              fontSize: 14,
+              fontWeight: "0.40em",
               letterSpacing: nameLetterSpacing,
               fontFamily,
               textTransform: "uppercase",
