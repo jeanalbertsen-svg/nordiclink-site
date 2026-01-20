@@ -497,11 +497,23 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 
 /* =========================================================
-   ✅ MOBILE Services dropdown (make it look like a modern sheet)
+   ✅ MOBILE Services dropdown (FIXED)
+   - Full-width modern "sheet" under the Services button
+   - No clipping
+   - Correct z-index stacking with backdrop
+   - Matches Header.jsx modern markup:
+     .mServicesDropdown.mServicesDropdownModern
+     .mSvcItem .mSvcIcon .mSvcText .mSvcTitle .mSvcDesc .mSvcAll
 ========================================================= */
+
+.mobileNavWrap,
+.mobileNav{
+  overflow: visible; /* ✅ prevent clipping */
+}
+
 .mServicesWrap{
   position: relative;
-  z-index: 11; /* ensures dropdown sits above backdrop reliably */
+  z-index: 20; /* ✅ ensure dropdown layer is above the mobile menu */
 }
 
 .mServicesBtn{
@@ -511,54 +523,52 @@ h6{ font-size: 16px; line-height: 1.35; }
   justify-content: space-between;
 }
 
-/* ✅ Modern chevron (you were missing this in this file) */
+/* Chevron */
 .mChevron{
   width: 10px;
   height: 10px;
-  border-right: 2px solid rgba(255,255,255,0.80);
-  border-bottom: 2px solid rgba(255,255,255,0.80);
+  border-right: 2px solid rgba(255,255,255,0.82);
+  border-bottom: 2px solid rgba(255,255,255,0.82);
   transform: rotate(45deg);
   transition: transform 0.18s ease, opacity 0.18s ease;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .mChevron.open{
   transform: rotate(-135deg);
   opacity: 1;
 }
 
-/* Tap-outside backdrop (closes dropdown only) */
+/* Tap-outside backdrop (closes dropdown only)
+   Put it BELOW dropdown but ABOVE rest of UI */
 .mServicesBackdrop{
   position: fixed;
   inset: 0;
-  background: transparent;
+  background: rgba(0,0,0,0.15); /* optional soft dim */
   border: none;
   padding: 0;
   margin: 0;
-  z-index: 10;
+  z-index: 40;
 }
 
-/* Base positioning (mobile dropdown should be full width under the button) */
+/* Dropdown panel is ABOVE backdrop */
 .mServicesDropdown{
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
   right: 0;
-  transform: none;
+  z-index: 50;
 
-  width: auto;
-  z-index: 20;
-
-  /* ✅ subtle entrance to feel “modern” */
-  animation: mDropIn .16s ease-out;
+  /* ✅ smooth pop */
+  animation: mDropIn 0.16s ease-out;
   transform-origin: top center;
 }
 
 @keyframes mDropIn{
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  from{ opacity: 0; transform: translateY(-6px) scale(0.985); }
+  to  { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Modern mobile dropdown panel */
+/* Modern dropdown panel */
 .mServicesDropdownModern{
   padding: 10px;
   border-radius: 18px;
@@ -617,18 +627,24 @@ h6{ font-size: 16px; line-height: 1.35; }
   font-size: 18px;
 }
 
-.mSvcText{ display: grid; gap: 2px; }
+.mSvcText{
+  display: grid;
+  gap: 2px;
+}
+
 .mSvcTitle{
   font-weight: 900;
   font-size: 15px;
   letter-spacing: 0.01em;
 }
+
 .mSvcDesc{
   font-size: 12.5px;
   color: rgba(255,255,255,0.70);
   line-height: 1.25;
 }
 
+/* View all services */
 .mSvcAll{
   margin-top: 4px;
   display: block;
@@ -642,44 +658,20 @@ h6{ font-size: 16px; line-height: 1.35; }
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
   color: rgba(255,255,255,0.92);
+
+  transition: background .16s ease, border-color .16s ease;
 }
 
 .mSvcAll:hover{
   background: rgba(255,255,255,0.09);
+  border-color: rgba(255,255,255,0.18);
 }
 
-/* If any old markup still uses .mSubLink, keep it styled too */
-.mSubLink{
-  display: block;
-  width: 100%;
-  text-align: left;
+/* ✅ IMPORTANT:
+   If you still have .mSubLink in older pages, keep it styled,
+   but don’t let it mess with the modern dropdown */
+.mSubLink{ all: unset; }
 
-  padding: 12px 12px;
-  border-radius: 12px;
-
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.86);
-
-  cursor: pointer;
-  white-space: nowrap;
-  transition: 0.2s ease;
-}
-
-.mSubLink:hover{
-  background: var(--glassHover);
-  border-color: rgba(255,255,255,0.16);
-  color: rgba(255,255,255,0.96);
-  transform: translateY(-1px);
-}
-
-.mSubLink:active{
-  transform: translateY(0);
-}
 
 /* ✅ MOBILE behavior */
 @media (max-width: 900px){
