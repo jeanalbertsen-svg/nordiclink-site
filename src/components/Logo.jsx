@@ -83,7 +83,7 @@ export default function Logo({
         <div style={{ minWidth: 0 }}>
           <div
             style={{
-              color: "#cbd9ffff",
+              color: rgba(11,56,124,0.75),
               fontSize: 12,
               fontWeight: "0.12em",
               letterSpacing: nameLetterSpacing,
