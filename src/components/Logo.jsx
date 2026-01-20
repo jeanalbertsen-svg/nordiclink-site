@@ -1,7 +1,7 @@
 // src/components/Logo.jsx
 export default function Logo({
   // Box sizing
-  size = 64,
+  size = 80,
   boxBg = "#BFE6FF",
   radius = 0, // ✅ square
   borderWidth = 3,
@@ -15,12 +15,12 @@ export default function Logo({
   // NLC text
   text = "NLC",
   textColor = "#031c52",
-  weight = 900,
+  weight = 1200,
   letterSpacing = "0.08em",
 
 
   // ✅ NOW fully controllable
-  fontSize = 28,
+  fontSize = 24,
 
   // font family
   fontFamily = "ui-serif, Georgia, Adamina, Times, serif",
@@ -57,7 +57,7 @@ export default function Logo({
 
           // ✅ neon glow around border
           boxShadow: glow
-            ? `0 0 10px rgba(11,56,124,0.75), 0 0 24px rgba(11,56,124,0.45)`
+            ? `0 0 10px #BFE6FF, 0 0 24px #BFE6FF`
             : "none",
 
           flexShrink: 0,
