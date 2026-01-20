@@ -2,19 +2,19 @@
 export default function Logo({
   // Box sizing
   size = 64,
-  boxBg = "#0B387C",
+  boxBg = "#BFE6FF",
   radius = 0, // ✅ square
   borderWidth = 3,
 
   // ✅ neon border color
-  borderColor = "#0B387C",
+  borderColor = "#031c52;",
 
   // ✅ neon glow control (optional)
   glow = true,
 
   // NLC text
   text = "NLC",
-  textColor = "#ffffff",
+  textColor = "#031c52;",
   weight = 900,
   letterSpacing = "0.08em",
 
@@ -83,7 +83,7 @@ export default function Logo({
         <div style={{ minWidth: 0 }}>
           <div
             style={{
-              color: "rgba(11,56,124,0.75)",
+              color: "#BFE6FF",
               fontSize: 14,
               fontWeight: "0.40em",
               letterSpacing: nameLetterSpacing,
