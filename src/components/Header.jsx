@@ -15,7 +15,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const mobileServicesRef = useRef(null);
 
-  // NOTE: kept from your file (not used elsewhere)
   const isServicesRoute = location.pathname.startsWith("/services");
 
   // Close Services popover when closing mobile menu
@@ -66,6 +65,12 @@ export default function Header({ mobileOpen, setMobileOpen }) {
     navigate(`/services${hash}`);
   };
 
+  const closeAll = () => {
+    setMobileOpen(false);
+    setMobileServicesOpen(false);
+    setDeskServicesOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="container headerInner">
@@ -82,15 +87,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
         </button>
 
         {/* ✅ Brand */}
-        <Link
-          to="/"
-          className="brand"
-          onClick={() => {
-            setMobileOpen(false);
-            setMobileServicesOpen(false);
-            setDeskServicesOpen(false);
-          }}
-        >
+        <Link to="/" className="brand" onClick={closeAll}>
           <span className="logoDesktop">
             <Logo
               size={60}
@@ -130,7 +127,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
             {/* ✅ Services link + separate chevron dropdown (link works!) */}
             <div className="navDropdownWrap" ref={deskServicesRef}>
               <div className="navServicesRow">
-                {/* ✅ Services is a REAL link now */}
                 <NavLink
                   to="/services"
                   onClick={() => setDeskServicesOpen(false)}
@@ -139,7 +135,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   Services
                 </NavLink>
 
-                {/* ✅ Chevron toggles dropdown (does NOT navigate) */}
                 <button
                   type="button"
                   className={`navChevronBtn ${deskServicesOpen ? "open" : ""}`}
@@ -152,7 +147,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                 </button>
               </div>
 
-              {/* ✅ Modernized desktop dropdown */}
               {deskServicesOpen && (
                 <div className="navDropdown navDropdownModern" role="menu" aria-label="Services">
                   <button className="svcItem" onClick={() => goService("")} role="menuitem">
@@ -234,8 +228,9 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               Home
             </NavLink>
 
-            {/* ✅ Services dropdown (mobile) */}
+            {/* ✅ MOBILE: Services row + card dropdown */}
             <div className="mServicesWrap" ref={mobileServicesRef}>
+              {/* This top row toggles the dropdown */}
               <button
                 type="button"
                 className="mLink mServicesBtn"
@@ -247,7 +242,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                 <span className={`mChevron ${mobileServicesOpen ? "open" : ""}`} />
               </button>
 
-              {/* ✅ Tap outside closes ONLY dropdown */}
+              {/* Tap outside closes ONLY dropdown (not the whole menu) */}
               {mobileServicesOpen && (
                 <button
                   type="button"
@@ -257,7 +252,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                 />
               )}
 
-              {/* ✅ Modernized mobile dropdown */}
+              {/* ✅ The card dropdown */}
               {mobileServicesOpen && (
                 <div
                   id="m-services-dropdown"
@@ -265,15 +260,17 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   role="menu"
                   aria-label="Services"
                 >
-                  <button className="mSvcItem" onClick={() => goService("")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">
-                      🧭
-                    </span>
-                    <span className="mSvcText">
-                      <span className="mSvcTitle">Services Overview</span>
-                      <span className="mSvcDesc">Start here</span>
-                    </span>
-                  </button>
+                  {/* ✅ IMPORTANT: Also include a real Services page link */}
+                  <NavLink
+                    to="/services"
+                    className="mSvcAll"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileServicesOpen(false);
+                    }}
+                  >
+                    View all services
+                  </NavLink>
 
                   <button className="mSvcItem" onClick={() => goService("#strategy")} role="menuitem">
                     <span className="mSvcIcon" aria-hidden="true">
@@ -304,17 +301,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                       <span className="mSvcDesc">Nordic–Asia execution</span>
                     </span>
                   </button>
-
-                  <NavLink
-                    to="/services"
-                    className="mSvcAll"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setMobileServicesOpen(false);
-                    }}
-                  >
-                    View all services
-                  </NavLink>
                 </div>
               )}
             </div>

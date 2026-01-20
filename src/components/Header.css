@@ -65,9 +65,6 @@
 
 /* =========================================================
    ✅ Desktop Services dropdown (overlay, does NOT push links)
-   Matches Header.jsx:
-   .navDropdownWrap .navServicesRow .navChevronBtn .navChevron
-   .navDropdown.navDropdownModern .svcItem .svcIcon .svcText .svcTitle .svcDesc
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -122,10 +119,7 @@
   z-index: 9999;
 }
 
-/* =========================================================
-   ✅ Modern desktop dropdown panel (cards + descriptions)
-   Used by Header.jsx: className="navDropdown navDropdownModern"
-========================================================= */
+/* ✅ Modern desktop dropdown panel */
 .navDropdownModern{
   min-width: 360px;
   padding: 10px;
@@ -141,8 +135,13 @@
   gap: 8px;
 }
 
-/* Modern service “card” row */
+/* ✅ Button reset so “cards” don’t look like text */
 .svcItem{
+  border: 0;
+  outline: none;
+  font: inherit;
+  background: none;
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -166,10 +165,7 @@
   background: rgba(255,255,255,0.09);
   border-color: rgba(255,255,255,0.16);
 }
-
-.svcItem:active{
-  transform: translateY(0);
-}
+.svcItem:active{ transform: translateY(0); }
 
 .svcIcon{
   width: 42px;
@@ -216,36 +212,37 @@
   color: rgba(255,255,255,0.92);
   font-weight: 800;
 }
-
-.svcAll:hover{
-  background: rgba(255,255,255,0.09);
-}
+.svcAll:hover{ background: rgba(255,255,255,0.09); }
 
 /* =========================================================
    MOBILE MENU
-   Matches:
-   .mobileNavWrap .mobileNav .mLink .mActive .mCta
 ========================================================= */
 .mobileNavWrap{
   border-top: 1px solid rgba(255,255,255,0.10);
   background: rgba(14,16,19,0.96);
+
+  /* ✅ CRITICAL: don’t clip dropdown */
+  overflow: visible;
 }
 
 .mobileNav{
   display: grid;
-  gap: 10px;                /* ✅ tighter */
-  padding: 14px 0 18px 0;   /* ✅ tighter */
+  gap: 10px;
+  padding: 14px 0 18px 0;
   position: relative;
+
+  /* ✅ CRITICAL: don’t clip dropdown */
+  overflow: visible;
 }
 
 .mLink{
   width: 100%;
-  padding: 14px 16px;       /* ✅ less bulky */
+  padding: 14px 16px;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.05);
 
-  font-size: 17px;          /* ✅ cleaner */
+  font-size: 17px;
   color: rgba(255,255,255,0.88);
   font-family: Poppins, Arial, sans-serif;
 
@@ -274,14 +271,11 @@
 }
 
 /* =========================================================
-   ✅ MOBILE Services dropdown
-   Matches Header.jsx:
-   .mServicesWrap .mServicesBtn .mChevron .mServicesBackdrop
-   .mServicesDropdown.mServicesDropdownModern .mSvcItem .mSvcIcon .mSvcText .mSvcTitle .mSvcDesc .mSvcAll
+   ✅ MOBILE Services dropdown (card dropdown menu)
 ========================================================= */
 .mServicesWrap{
   position: relative;
-  z-index: 11; /* ensures dropdown sits above backdrop reliably */
+  z-index: 11;
 }
 
 .mServicesBtn{
@@ -310,14 +304,14 @@
 .mServicesBackdrop{
   position: fixed;
   inset: 0;
-  background: transparent;
+  background: rgba(0,0,0,0.15); /* optional soft dim */
   border: none;
   padding: 0;
   margin: 0;
   z-index: 10;
 }
 
-/* ✅ Base mobile dropdown positioning (shared) */
+/* Base dropdown positioning */
 .mServicesDropdown{
   position: absolute;
   top: calc(100% + 12px);
@@ -325,12 +319,13 @@
   right: 0;
   transform: none;
   z-index: 20;
+
+  /* ✅ ensure full card panel width */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* =========================================================
-   ✅ Modern mobile dropdown panel (sheet-style + rows)
-   Used by Header.jsx: className="mServicesDropdown mServicesDropdownModern"
-========================================================= */
+/* Mobile dropdown panel */
 .mServicesDropdownModern{
   padding: 10px;
   border-radius: 18px;
@@ -345,8 +340,13 @@
   gap: 8px;
 }
 
-/* Modern service row (mobile) */
+/* ✅ Button reset so the rows look like cards (not text) */
 .mSvcItem{
+  border: 0;
+  outline: none;
+  font: inherit;
+  background: none;
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -370,10 +370,7 @@
   background: rgba(255,255,255,0.09);
   border-color: rgba(255,255,255,0.16);
 }
-
-.mSvcItem:active{
-  transform: translateY(0);
-}
+.mSvcItem:active{ transform: translateY(0); }
 
 .mSvcIcon{
   width: 44px;
@@ -415,10 +412,7 @@
   border: 1px solid rgba(255,255,255,0.12);
   color: rgba(255,255,255,0.92);
 }
-
-.mSvcAll:hover{
-  background: rgba(255,255,255,0.09);
-}
+.mSvcAll:hover{ background: rgba(255,255,255,0.09); }
 
 /* =========================================================
    ✅ Responsive header behavior
