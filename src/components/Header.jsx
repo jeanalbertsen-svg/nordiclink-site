@@ -7,17 +7,13 @@ export default function Header({ mobileOpen, setMobileOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ Desktop dropdown (Services)
   const [deskServicesOpen, setDeskServicesOpen] = useState(false);
   const deskServicesRef = useRef(null);
 
-  // ✅ Mobile dropdown (Services)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const mobileServicesRef = useRef(null);
 
-  const isServicesRoute = location.pathname.startsWith("/services");
-
-  // Close Services popover when closing mobile menu
+  // Close mobile services when closing menu
   useEffect(() => {
     if (!mobileOpen) setMobileServicesOpen(false);
   }, [mobileOpen]);
@@ -27,7 +23,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
     setDeskServicesOpen(false);
   }, [location.pathname, location.hash]);
 
-  // Close popovers on outside click (desktop + mobile)
+  // Close on outside click
   useEffect(() => {
     function onDocClick(e) {
       if (deskServicesRef.current && !deskServicesRef.current.contains(e.target)) {
@@ -39,14 +35,13 @@ export default function Header({ mobileOpen, setMobileOpen }) {
     }
     document.addEventListener("mousedown", onDocClick);
     document.addEventListener("touchstart", onDocClick, { passive: true });
-
     return () => {
       document.removeEventListener("mousedown", onDocClick);
       document.removeEventListener("touchstart", onDocClick);
     };
   }, []);
 
-  // ESC closes dropdowns
+  // ESC closes
   useEffect(() => {
     function onKeyDown(e) {
       if (e.key === "Escape") {
@@ -65,16 +60,9 @@ export default function Header({ mobileOpen, setMobileOpen }) {
     navigate(`/services${hash}`);
   };
 
-  const closeAll = () => {
-    setMobileOpen(false);
-    setMobileServicesOpen(false);
-    setDeskServicesOpen(false);
-  };
-
   return (
     <header className="header">
       <div className="container headerInner">
-        {/* ✅ Burger */}
         <button
           className="menuBtn"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -86,8 +74,15 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           <span />
         </button>
 
-        {/* ✅ Brand */}
-        <Link to="/" className="brand" onClick={closeAll}>
+        <Link
+          to="/"
+          className="brand"
+          onClick={() => {
+            setMobileOpen(false);
+            setMobileServicesOpen(false);
+            setDeskServicesOpen(false);
+          }}
+        >
           <span className="logoDesktop">
             <Logo
               size={60}
@@ -117,14 +112,12 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           </span>
         </Link>
 
-        {/* ✅ Desktop nav */}
         <div className="headerRight">
           <nav className="navDesktop" aria-label="Primary">
             <NavLink to="/" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
               Home
             </NavLink>
 
-            {/* ✅ Services link + separate chevron dropdown (link works!) */}
             <div className="navDropdownWrap" ref={deskServicesRef}>
               <div className="navServicesRow">
                 <NavLink
@@ -150,9 +143,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               {deskServicesOpen && (
                 <div className="navDropdown navDropdownModern" role="menu" aria-label="Services">
                   <button className="svcItem" onClick={() => goService("")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">
-                      🧭
-                    </span>
+                    <span className="svcIcon" aria-hidden="true">🧭</span>
                     <span className="svcText">
                       <span className="svcTitle">Services Overview</span>
                       <span className="svcDesc">Explore how we help you grow and execute</span>
@@ -160,9 +151,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="svcItem" onClick={() => goService("#strategy")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">
-                      📌
-                    </span>
+                    <span className="svcIcon" aria-hidden="true">📌</span>
                     <span className="svcText">
                       <span className="svcTitle">Business Strategy</span>
                       <span className="svcDesc">Positioning, roadmaps, market and growth strategy</span>
@@ -170,9 +159,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="svcItem" onClick={() => goService("#digital")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">
-                      ⚡
-                    </span>
+                    <span className="svcIcon" aria-hidden="true">⚡</span>
                     <span className="svcText">
                       <span className="svcTitle">Digital Transformation</span>
                       <span className="svcDesc">Modernization, tools, operating model and delivery</span>
@@ -180,9 +167,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="svcItem" onClick={() => goService("#crossborder")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">
-                      🌍
-                    </span>
+                    <span className="svcIcon" aria-hidden="true">🌍</span>
                     <span className="svcText">
                       <span className="svcTitle">Cross-Border Advisory</span>
                       <span className="svcDesc">Nordic–Asia partnerships, expansion and execution</span>
@@ -190,11 +175,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <div className="svcFooter">
-                    <NavLink
-                      to="/services"
-                      className="svcAll"
-                      onClick={() => setDeskServicesOpen(false)}
-                    >
+                    <NavLink to="/services" className="svcAll" onClick={() => setDeskServicesOpen(false)}>
                       View all services
                     </NavLink>
                   </div>
@@ -213,7 +194,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
         </div>
       </div>
 
-      {/* ✅ Mobile menu */}
       {mobileOpen && (
         <div className="mobileNavWrap">
           <div className="container mobileNav">
@@ -228,9 +208,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               Home
             </NavLink>
 
-            {/* ✅ MOBILE: Services row + card dropdown */}
             <div className="mServicesWrap" ref={mobileServicesRef}>
-              {/* This top row toggles the dropdown */}
               <button
                 type="button"
                 className="mLink mServicesBtn"
@@ -242,7 +220,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                 <span className={`mChevron ${mobileServicesOpen ? "open" : ""}`} />
               </button>
 
-              {/* Tap outside closes ONLY dropdown (not the whole menu) */}
               {mobileServicesOpen && (
                 <button
                   type="button"
@@ -252,7 +229,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                 />
               )}
 
-              {/* ✅ The card dropdown */}
               {mobileServicesOpen && (
                 <div
                   id="m-services-dropdown"
@@ -260,7 +236,38 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   role="menu"
                   aria-label="Services"
                 >
-                  {/* ✅ IMPORTANT: Also include a real Services page link */}
+                  <button className="mSvcItem" onClick={() => goService("")} role="menuitem">
+                    <span className="mSvcIcon" aria-hidden="true">🧭</span>
+                    <span className="mSvcText">
+                      <span className="mSvcTitle">Services Overview</span>
+                      <span className="mSvcDesc">Start here</span>
+                    </span>
+                  </button>
+
+                  <button className="mSvcItem" onClick={() => goService("#strategy")} role="menuitem">
+                    <span className="mSvcIcon" aria-hidden="true">📌</span>
+                    <span className="mSvcText">
+                      <span className="mSvcTitle">Business Strategy</span>
+                      <span className="mSvcDesc">Roadmaps and growth</span>
+                    </span>
+                  </button>
+
+                  <button className="mSvcItem" onClick={() => goService("#digital")} role="menuitem">
+                    <span className="mSvcIcon" aria-hidden="true">⚡</span>
+                    <span className="mSvcText">
+                      <span className="mSvcTitle">Digital Transformation</span>
+                      <span className="mSvcDesc">Modernize and automate</span>
+                    </span>
+                  </button>
+
+                  <button className="mSvcItem" onClick={() => goService("#crossborder")} role="menuitem">
+                    <span className="mSvcIcon" aria-hidden="true">🌍</span>
+                    <span className="mSvcText">
+                      <span className="mSvcTitle">Cross-Border Advisory</span>
+                      <span className="mSvcDesc">Nordic–Asia execution</span>
+                    </span>
+                  </button>
+
                   <NavLink
                     to="/services"
                     className="mSvcAll"
@@ -271,36 +278,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   >
                     View all services
                   </NavLink>
-
-                  <button className="mSvcItem" onClick={() => goService("#strategy")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">
-                      📌
-                    </span>
-                    <span className="mSvcText">
-                      <span className="mSvcTitle">Business Strategy</span>
-                      <span className="mSvcDesc">Roadmaps and growth</span>
-                    </span>
-                  </button>
-
-                  <button className="mSvcItem" onClick={() => goService("#digital")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">
-                      ⚡
-                    </span>
-                    <span className="mSvcText">
-                      <span className="mSvcTitle">Digital Transformation</span>
-                      <span className="mSvcDesc">Modernize and automate</span>
-                    </span>
-                  </button>
-
-                  <button className="mSvcItem" onClick={() => goService("#crossborder")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">
-                      🌍
-                    </span>
-                    <span className="mSvcText">
-                      <span className="mSvcTitle">Cross-Border Advisory</span>
-                      <span className="mSvcDesc">Nordic–Asia execution</span>
-                    </span>
-                  </button>
                 </div>
               )}
             </div>
