@@ -1,10 +1,10 @@
 // src/components/Logo.jsx
 export default function Logo({
   // Box sizing
-  size = 80,
+  size = 85,
   boxBg = "#BFE6FF",
   radius = 0, // ✅ square
-  borderWidth = 3,
+  borderWidth = 6,
 
   // ✅ neon border color
   borderColor = "#BFE6FF",
