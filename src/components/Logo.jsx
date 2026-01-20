@@ -7,16 +7,17 @@ export default function Logo({
   borderWidth = 3,
 
   // ✅ neon border color
-  borderColor = "#031c52;",
+  borderColor = "#BFE6FF",
 
   // ✅ neon glow control (optional)
   glow = true,
 
   // NLC text
   text = "NLC",
-  textColor = "#031c52;",
+  textColor = "#031c52",
   weight = 900,
   letterSpacing = "0.08em",
+
 
   // ✅ NOW fully controllable
   fontSize = 28,
