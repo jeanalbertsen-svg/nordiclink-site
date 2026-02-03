@@ -250,17 +250,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
             >
               CONTACT
             </NavLink>
-
-            <a
-              href="/contact"
-              className="button buttonPrimary mCta"
-              onClick={() => {
-                setMobileOpen(false);
-                setMobileServicesOpen(false);
-              }}
-            >
-              Book a Call
-            </a>
           </div>
         </div>
       )}
