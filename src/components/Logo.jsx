@@ -2,7 +2,7 @@
 import logoImg from "../assets/NLC.png";
 
 export default function Logo({
-  size = 85,
+  size = 95,
   showName = true,
   name = "NORDICLINK CONSULTING",
   nameLetterSpacing = "0.12em",

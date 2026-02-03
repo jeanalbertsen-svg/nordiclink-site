@@ -512,7 +512,7 @@
   /* ✅ Make logo BIGGER on mobile */
   .brand img,
   .logoImg{
-    height: 64px;
+    height: 80px;
   }
 }
 
@@ -520,6 +520,6 @@
 @media (max-width: 520px){
   .brand img,
   .logoImg{
-    height: 68px;
+    height: 80px;
   }
 }
