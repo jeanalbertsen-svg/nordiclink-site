@@ -26,6 +26,7 @@
   --itemBg: rgba(3, 28, 82, 0.04);
   --itemBorder: rgba(3, 28, 82, 0.10);
   --itemBgHover: rgba(3, 28, 82, 0.06);
+
   --textDark: #0E1013;
   --textMutedDark: rgba(14,16,19,0.62);
 }
@@ -65,29 +66,46 @@
 }
 
 /* =========================================================
-   BURGER (mobile only)
+   BURGER (mobile only)  ✅ CLEAN: transparent + no border
 ========================================================= */
 .menuBtn{
   display: none;
   width: 46px;
   height: 44px;
-  border-radius: 14px;
-  border: 1px solid rgba(3, 28, 82, 0.10);
-  background: rgba(3, 28, 82, 0.03);
+  border-radius: 0;          /* ✅ straight edges */
+  border: 0;                 /* ✅ remove border line */
+  outline: none;
+  background: transparent;   /* ✅ transparent */
   padding: 10px;
   cursor: pointer;
-  transition: background .16s ease, transform .12s ease;
+  transition: transform .12s ease, opacity .16s ease;
 }
-.menuBtn:hover{ background: rgba(3, 28, 82, 0.06); }
-.menuBtn:active{ background: rgba(3, 28, 82, 0.10); transform: scale(0.98); }
+.menuBtn:hover{ opacity: 0.85; }
+.menuBtn:active{ transform: scale(0.98); opacity: 0.72; }
 
 .menuBtn span{
   display: block;
   height: 2px;
-  width: 16px;
-  background: var(--textDark);
-  border-radius: 999px;
-  margin: 2px 0;
+  width: 18px;               /* ✅ slightly wider for clean look */
+  background: var(--textDark);/* ✅ dark lines on white header */
+  border-radius: 0;          /* ✅ straight ends */
+  margin: 3px 0;
+}
+
+/* =========================================================
+   LOGO SIZE  ✅ BIGGER
+========================================================= */
+.brand img{
+  height: 56px;              /* ✅ bigger by default */
+  width: auto;
+  display: block;
+}
+
+/* If your Logo component renders an image with a class, support it too */
+.logoImg{
+  height: 56px;
+  width: auto;
+  display: block;
 }
 
 /* =========================================================
@@ -108,7 +126,7 @@
   transition: color .16s ease;
 }
 .navLink:hover{
-  color: #1b2d61; ;
+  color: #1b2d61;
 }
 
 .navActive{
@@ -267,8 +285,8 @@
 ========================================================= */
 .mobileNavWrap{
   border-top: 1px solid var(--headerBorder);
-  background:none;
-  overflow: visible; /* ✅ don’t clip dropdown */
+  background: none;
+  overflow: visible;
 }
 
 .mobileNav{
@@ -276,7 +294,7 @@
   gap: 10px;
   padding: 14px 0 18px 0;
   position: relative;
-  overflow: visible; /* ✅ don’t clip dropdown */
+  overflow: visible;
 }
 
 .mLink{
@@ -315,11 +333,11 @@
 }
 
 /* =========================================================
-   ✅ MOBILE Services dropdown (CARD dropdown menu)
+   MOBILE Services dropdown (CARD dropdown menu)
 ========================================================= */
 .mServicesWrap{
   position: relative;
-  z-index: 60; /* ✅ dropdown layer */
+  z-index: 60;
 }
 
 .mServicesBtn{
@@ -329,7 +347,6 @@
   justify-content: space-between;
 }
 
-/* Chevron */
 .mChevron{
   width: 10px;
   height: 10px;
@@ -344,7 +361,6 @@
   opacity: 1;
 }
 
-/* Tap-outside backdrop (below dropdown, above page) */
 .mServicesBackdrop{
   position: fixed;
   inset: 0;
@@ -355,7 +371,6 @@
   z-index: 50;
 }
 
-/* Dropdown positioning (above backdrop) */
 .mServicesDropdown{
   position: absolute;
   top: calc(100% + 12px);
@@ -375,7 +390,6 @@
   to  { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* White dropdown sheet */
 .mServicesDropdownModern{
   padding: 10px;
   border-radius: 18px;
@@ -386,7 +400,7 @@
   gap: 8px;
 }
 
-/* ✅ Button reset so rows look like cards */
+/* ✅ reset */
 .mSvcItem{
   appearance: none;
   -webkit-appearance: none;
@@ -398,7 +412,6 @@
   padding: 0;
 }
 
-/* Card row */
 .mSvcItem{
   width: 100%;
   display: flex;
@@ -494,5 +507,19 @@
     margin: 0;
     max-width: 70vw;
     overflow: hidden;
+  }
+
+  /* ✅ Make logo BIGGER on mobile */
+  .brand img,
+  .logoImg{
+    height: 64px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 520px){
+  .brand img,
+  .logoImg{
+    height: 68px;
   }
 }
