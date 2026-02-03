@@ -156,8 +156,8 @@ h6{ font-size: 16px; line-height: 1.35; }
 }
 .buttonGhost1{
   position: absolute;
-  top: 70%;
-  left: 75%;
+  top: 90%;
+  left: 50%;
   transform: translate(-50%, -50%);
 
   display: inline-flex;
