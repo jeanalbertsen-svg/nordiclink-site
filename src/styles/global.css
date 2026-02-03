@@ -248,7 +248,7 @@ h6{ font-size: 16px; line-height: 1.35; }
   display: none;
   width: 46px;
   height: 44px;
-  border-radius: 14px;
+  border-radius: 0;
   border: none;
   background: transparent;
   padding: 10px;

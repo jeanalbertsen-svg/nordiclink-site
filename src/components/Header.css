@@ -351,8 +351,8 @@
 .mChevron{
   width: 10px;
   height: 10px;
-  border-right: 2px solid rgba(14,16,19,0.80);
-  border-bottom: 2px solid rgba(14,16,19,0.80);
+  border-right: 0 solid rgba(14,16,19,0.80);
+  border-bottom: 0 solid rgba(14,16,19,0.80);
   transform: rotate(45deg);
   transition: transform .18s ease, opacity .18s ease;
   opacity: 0.9;
@@ -395,7 +395,7 @@
   padding: 10px;
   border-radius: 0;
   background: var(--sheetBg);
-  border: 1px solid var(--sheetBorder);
+  border: 0 solid var(--sheetBorder);
   box-shadow: var(--sheetShadow);
   display: grid;
   gap: 8px;
