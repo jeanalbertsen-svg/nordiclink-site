@@ -24,7 +24,7 @@ export default function Logo({
         alt="NordicLink Consulting Logo"
         style={{
           width: size,
-          height: "auto",
+          height: "100px",
           objectFit: "contain",
           flexShrink: 0,
         }}
