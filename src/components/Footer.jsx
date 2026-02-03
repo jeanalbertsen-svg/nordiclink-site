@@ -8,6 +8,7 @@ export default function Footer() {
       <div className="container footerInner">
         <div>
           <div className="footerBrand">© {year} NORDICLINK CONSULTING</div>
+          <div className="footerBrand">CVR no. 46136152</div>
         </div>
         </div>
     </footer>
