@@ -30,7 +30,6 @@ export default function ServiceCards() {
         <article key={s.title} className="serviceCard">
           <h3 className="serviceTitle">{s.title}</h3>
           <p className="serviceText">{s.text}</p>
-          <Link to={s.to} className="serviceLink">Learn more →</Link>
         </article>
       ))}
     </div>

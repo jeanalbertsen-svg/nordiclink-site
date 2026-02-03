@@ -124,7 +124,7 @@ textarea:focus{
 
 .contactEmail{
   font-weight: 900;
-  color: #8fd0ff; /* ✅ light neon blue */
+  color: #c1d0f7;  /* ✅ light neon blue */
   text-shadow: 0 0 10px rgba(143,208,255,0.25);
 }
 .contactEmail:hover{

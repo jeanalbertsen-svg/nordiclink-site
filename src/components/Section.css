@@ -2,9 +2,9 @@
 .sectionHead{ margin-bottom: 18px; }
 .sectionTitle{
   margin: 0;
-  font-size: 24px;
-  font-weight: 800;
-  color: #BFE6FF;
+  font-size: 18px;
+  font-weight: 600;
+  color:  #c1d0f7; /* brand navy */;
   letter-spacing: -0.00em;
 }
 .sectionSubtitle{

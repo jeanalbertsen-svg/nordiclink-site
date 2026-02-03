@@ -84,74 +84,44 @@ export default function Header({ mobileOpen, setMobileOpen }) {
           }}
         >
           <span className="logoDesktop">
-            <Logo
-              size={60}
-              fontSize={20}
-              borderWidth={4}
-              borderColor="#0B387C"
-              nameSize={20}
-              nameColor="rgba(255,255,255,0.72)"
-              nameLetterSpacing="0.14em"
-              nameMaxWidth={420}
-              nameWhiteSpace="nowrap"
-            />
+            <Logo showName={false} />
           </span>
 
           <span className="logoMobile">
-            <Logo
-              size={60}
-              fontSize={15}
-              borderWidth={3}
-              borderColor="#0B387C"
-              nameSize={15}
-              nameColor="rgba(255,255,255,0.72)"
-              nameLetterSpacing="0.12em"
-              nameMaxWidth={260}
-              nameWhiteSpace="normal"
-            />
+            <Logo showName={false} />
           </span>
         </Link>
 
         <div className="headerRight">
           <nav className="navDesktop" aria-label="Primary">
             <NavLink to="/" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
-              Home
+              HOME
             </NavLink>
 
-            <div className="navDropdownWrap" ref={deskServicesRef}>
-              <div className="navServicesRow">
-                <NavLink
-                  to="/services"
-                  onClick={() => setDeskServicesOpen(false)}
-                  className={({ isActive }) => (isActive ? "navActive" : "navLink")}
-                >
-                  Services
-                </NavLink>
+        <div className="navDropdownWrap" ref={deskServicesRef}>
+          <NavLink
+            to="/services"
+            onClick={(e) => {
+              // First click = open dropdown (don't navigate)
+              if (!deskServicesOpen) {
+                e.preventDefault();
+                setDeskServicesOpen(true);
+                return;
+              }
 
-                <button
-                  type="button"
-                  className={`navChevronBtn ${deskServicesOpen ? "open" : ""}`}
-                  aria-haspopup="menu"
-                  aria-expanded={deskServicesOpen}
-                  aria-label={deskServicesOpen ? "Close Services menu" : "Open Services menu"}
-                  onClick={() => setDeskServicesOpen((v) => !v)}
-                >
-                  <span className="navChevron" />
-                </button>
-              </div>
+              // Second click = go to /services
+              setDeskServicesOpen(false);
+            }}
+            className={({ isActive }) => (isActive ? "navActive" : "navLink")}
+            aria-haspopup="menu"
+            aria-expanded={deskServicesOpen}
+          >
+            SERVICES
+          </NavLink>
 
               {deskServicesOpen && (
                 <div className="navDropdown navDropdownModern" role="menu" aria-label="Services">
-                  <button className="svcItem" onClick={() => goService("")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">🧭</span>
-                    <span className="svcText">
-                      <span className="svcTitle">Services Overview</span>
-                      <span className="svcDesc">Explore how we help you grow and execute</span>
-                    </span>
-                  </button>
-
                   <button className="svcItem" onClick={() => goService("#strategy")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">📌</span>
                     <span className="svcText">
                       <span className="svcTitle">Business Strategy</span>
                       <span className="svcDesc">Positioning, roadmaps, market and growth strategy</span>
@@ -159,7 +129,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="svcItem" onClick={() => goService("#digital")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">⚡</span>
                     <span className="svcText">
                       <span className="svcTitle">Digital Transformation</span>
                       <span className="svcDesc">Modernization, tools, operating model and delivery</span>
@@ -167,28 +136,21 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="svcItem" onClick={() => goService("#crossborder")} role="menuitem">
-                    <span className="svcIcon" aria-hidden="true">🌍</span>
                     <span className="svcText">
                       <span className="svcTitle">Cross-Border Advisory</span>
                       <span className="svcDesc">Nordic–Asia partnerships, expansion and execution</span>
                     </span>
                   </button>
-
-                  <div className="svcFooter">
-                    <NavLink to="/services" className="svcAll" onClick={() => setDeskServicesOpen(false)}>
-                      View all services
-                    </NavLink>
-                  </div>
                 </div>
               )}
             </div>
 
             <NavLink to="/about" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
-              About
+              ABOUT
             </NavLink>
 
             <NavLink to="/contact" className={({ isActive }) => (isActive ? "navActive" : "navLink")}>
-              Contact
+              CONTACT
             </NavLink>
           </nav>
         </div>
@@ -205,7 +167,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               }}
               className={({ isActive }) => (isActive ? "mActive" : "mLink")}
             >
-              Home
+              HOME
             </NavLink>
 
             <div className="mServicesWrap" ref={mobileServicesRef}>
@@ -216,7 +178,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                 aria-expanded={mobileServicesOpen}
                 aria-controls="m-services-dropdown"
               >
-                <span>Services</span>
+                <span>SERVICES</span>
                 <span className={`mChevron ${mobileServicesOpen ? "open" : ""}`} />
               </button>
 
@@ -237,7 +199,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   aria-label="Services"
                 >
                   <button className="mSvcItem" onClick={() => goService("")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">🧭</span>
                     <span className="mSvcText">
                       <span className="mSvcTitle">Services Overview</span>
                       <span className="mSvcDesc">Start here</span>
@@ -245,7 +206,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="mSvcItem" onClick={() => goService("#strategy")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">📌</span>
                     <span className="mSvcText">
                       <span className="mSvcTitle">Business Strategy</span>
                       <span className="mSvcDesc">Roadmaps and growth</span>
@@ -253,7 +213,6 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="mSvcItem" onClick={() => goService("#digital")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">⚡</span>
                     <span className="mSvcText">
                       <span className="mSvcTitle">Digital Transformation</span>
                       <span className="mSvcDesc">Modernize and automate</span>
@@ -261,23 +220,11 @@ export default function Header({ mobileOpen, setMobileOpen }) {
                   </button>
 
                   <button className="mSvcItem" onClick={() => goService("#crossborder")} role="menuitem">
-                    <span className="mSvcIcon" aria-hidden="true">🌍</span>
                     <span className="mSvcText">
                       <span className="mSvcTitle">Cross-Border Advisory</span>
                       <span className="mSvcDesc">Nordic–Asia execution</span>
                     </span>
                   </button>
-
-                  <NavLink
-                    to="/services"
-                    className="mSvcAll"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setMobileServicesOpen(false);
-                    }}
-                  >
-                    View all services
-                  </NavLink>
                 </div>
               )}
             </div>
@@ -290,7 +237,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               }}
               className={({ isActive }) => (isActive ? "mActive" : "mLink")}
             >
-              About
+              ABOUT
             </NavLink>
 
             <NavLink
@@ -301,7 +248,7 @@ export default function Header({ mobileOpen, setMobileOpen }) {
               }}
               className={({ isActive }) => (isActive ? "mActive" : "mLink")}
             >
-              Contact
+              CONTACT
             </NavLink>
 
             <a

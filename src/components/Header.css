@@ -1,33 +1,98 @@
 /* =========================
    HEADER + NAV + DROPDOWNS
    Matches src/components/Header.jsx
+   (PLACE THIS AT THE VERY END OF YOUR GLOBAL CSS)
 ========================= */
 
-/* ✅ Burger hidden on desktop */
+/* =========================================================
+   COLOR TOKENS (optional but recommended)
+   Keeps Header + Global consistent
+========================================================= */
+:root{
+  --headerBg: #ffffff;
+  --headerBorder: rgba(3, 28, 82, 0.10);
+
+  --headerLink: rgba(14,16,19,0.72);     /* deep dark gray */
+  --headerLinkHover: rgba(14,16,19,0.95);
+  --headerLinkActive: rgba(14,16,19,0.95);
+
+  --menuCardBg: rgba(3, 28, 82, 0.03);
+  --menuCardBorder: rgba(3, 28, 82, 0.12);
+
+  --sheetBg: #ffffff;
+  --sheetBorder: rgba(3, 28, 82, 0.12);
+  --sheetShadow: 0 18px 50px rgba(0,0,0,0.18);
+
+  --itemBg: rgba(3, 28, 82, 0.04);
+  --itemBorder: rgba(3, 28, 82, 0.10);
+  --itemBgHover: rgba(3, 28, 82, 0.06);
+  --textDark: #0E1013;
+  --textMutedDark: rgba(14,16,19,0.62);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--headerBg);
+  border-bottom: 1px solid var(--headerBorder);
+}
+
+.headerInner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 12px 0;
+  min-height: 70px;
+}
+
+.brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.headerRight{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 8px;
+}
+
+/* =========================================================
+   BURGER (mobile only)
+========================================================= */
 .menuBtn{
   display: none;
   width: 46px;
   height: 44px;
   border-radius: 14px;
-  border: none;
-  background: transparent;
-  gap: 2px;
+  border: 1px solid rgba(3, 28, 82, 0.10);
+  background: rgba(3, 28, 82, 0.03);
   padding: 10px;
   cursor: pointer;
+  transition: background .16s ease, transform .12s ease;
 }
-.menuBtn:hover{ background: rgba(255,255,255,0.06); }
-.menuBtn:active{ background: rgba(255,255,255,0.10); transform: scale(0.98); }
+.menuBtn:hover{ background: rgba(3, 28, 82, 0.06); }
+.menuBtn:active{ background: rgba(3, 28, 82, 0.10); transform: scale(0.98); }
 
 .menuBtn span{
   display: block;
   height: 2px;
-  width: 15px;
-  background: rgba(255,255,255,0.92);
+  width: 16px;
+  background: var(--textDark);
   border-radius: 999px;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 
-/* ✅ Desktop nav */
+/* =========================================================
+   DESKTOP NAV
+========================================================= */
 .navDesktop{
   display: flex;
   align-items: center;
@@ -37,34 +102,24 @@
 
 .navLink{
   font-size: 18px;
-  color: rgba(255,255,255,0.72);
-  font-weight: 400;
+  color: var(--headerLink);
+  font-weight: 500;
   font-family: Poppins, Arial, sans-serif;
-  text-shadow: 0 0 8px rgba(255,255,255,0.10);
+  transition: color .16s ease;
 }
 .navLink:hover{
-  color: rgba(255,255,255,0.92);
-  text-shadow: 0 0 12px rgba(255,255,255,0.18);
+  color: #1b2d61; ;
 }
 
 .navActive{
   font-size: 18px;
-  color: rgba(255,255,255,0.95);
-  font-weight: 600;
+  color: var(--headerLinkActive);
+  font-weight: 700;
   font-family: Poppins, Arial, sans-serif;
-  text-shadow: 0 0 14px rgba(255,255,255,0.22);
-}
-
-/* ✅ Right side */
-.headerRight{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: 8px;
 }
 
 /* =========================================================
-   ✅ Desktop Services dropdown (overlay, does NOT push links)
+   DESKTOP Services dropdown (link + chevron)
 ========================================================= */
 .navDropdownWrap{
   position: relative;
@@ -72,45 +127,41 @@
   align-items: center;
 }
 
-/* ✅ Link + chevron row */
 .navServicesRow{
   display: inline-flex;
   align-items: center;
   gap: 10px;
 }
 
-/* ✅ Chevron button (small glass pill) */
 .navChevronBtn{
   width: 28px;
   height: 28px;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(3, 28, 82, 0.12);
+  background: rgba(3, 28, 82, 0.04);
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: background .16s ease, border-color .16s ease, transform .12s ease;
 }
 .navChevronBtn:hover{
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.16);
+  background: rgba(3, 28, 82, 0.08);
+  border-color: rgba(3, 28, 82, 0.18);
 }
 .navChevronBtn:active{ transform: scale(0.98); }
 
-/* ✅ Chevron icon */
 .navChevron{
   width: 9px;
   height: 9px;
-  border-right: 2px solid rgba(255,255,255,0.85);
-  border-bottom: 2px solid rgba(255,255,255,0.85);
+  border-right: 2px solid rgba(14,16,19,0.85);
+  border-bottom: 2px solid rgba(14,16,19,0.85);
   transform: rotate(45deg);
-  transition: transform 0.18s ease;
+  transition: transform .18s ease;
 }
 .navChevronBtn.open .navChevron{
   transform: rotate(-135deg);
 }
 
-/* ✅ Base dropdown positioning (shared) */
 .navDropdown{
   position: absolute;
   top: calc(100% + 14px);
@@ -119,51 +170,47 @@
   z-index: 9999;
 }
 
-/* ✅ Modern desktop dropdown panel */
 .navDropdownModern{
   min-width: 360px;
   padding: 10px;
   border-radius: 18px;
-
-  background: rgba(14, 18, 28, 0.92);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
+  background: var(--sheetBg);
+  border: 1px solid var(--sheetBorder);
+  box-shadow: var(--sheetShadow);
   display: grid;
   gap: 8px;
 }
 
-/* ✅ Button reset so “cards” don’t look like text */
+/* ✅ Button reset so cards look like cards */
 .svcItem{
+  appearance: none;
+  -webkit-appearance: none;
   border: 0;
   outline: none;
-  font: inherit;
   background: none;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
 
+/* Card row */
+.svcItem{
   width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
-
   padding: 12px 12px;
   border-radius: 14px;
-
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-
-  color: rgba(255,255,255,0.92);
+  background: var(--itemBg);
+  border: 1px solid var(--itemBorder);
   cursor: pointer;
   text-align: left;
-
   transition: transform .16s ease, background .16s ease, border-color .16s ease;
 }
-
 .svcItem:hover{
   transform: translateY(-1px);
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(255,255,255,0.16);
+  background: var(--itemBgHover);
+  border-color: rgba(3, 28, 82, 0.16);
 }
 .svcItem:active{ transform: translateY(0); }
 
@@ -171,14 +218,11 @@
   width: 42px;
   height: 42px;
   border-radius: 14px;
-
   display: grid;
   place-items: center;
-
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(3, 28, 82, 0.06);
+  border: 1px solid rgba(3, 28, 82, 0.10);
   flex: 0 0 auto;
-
   font-size: 18px;
 }
 
@@ -187,16 +231,17 @@
   font-weight: 800;
   font-size: 14px;
   letter-spacing: 0.01em;
+  color: var(--textDark);
 }
 .svcDesc{
   font-size: 12.5px;
-  color: rgba(255,255,255,0.70);
+  color: var(--textMutedDark);
   line-height: 1.25;
 }
 
 .svcFooter{
   padding-top: 6px;
-  border-top: 1px solid rgba(255,255,255,0.10);
+  border-top: 1px solid rgba(3, 28, 82, 0.10);
   margin-top: 2px;
 }
 
@@ -206,23 +251,24 @@
   padding: 10px 12px;
   border-radius: 12px;
   text-decoration: none;
-
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.92);
+  background: rgba(3, 28, 82, 0.05);
+  border: 1px solid rgba(3, 28, 82, 0.12);
+  color: var(--textDark);
   font-weight: 800;
+  transition: background .16s ease, border-color .16s ease;
 }
-.svcAll:hover{ background: rgba(255,255,255,0.09); }
+.svcAll:hover{
+  background: rgba(3, 28, 82, 0.08);
+  border-color: rgba(3, 28, 82, 0.18);
+}
 
 /* =========================================================
-   MOBILE MENU
+   MOBILE MENU (white to match header)
 ========================================================= */
 .mobileNavWrap{
-  border-top: 1px solid rgba(255,255,255,0.10);
-  background: rgba(14,16,19,0.96);
-
-  /* ✅ CRITICAL: don’t clip dropdown */
-  overflow: visible;
+  border-top: 1px solid var(--headerBorder);
+  background: #ffffff;
+  overflow: visible; /* ✅ don’t clip dropdown */
 }
 
 .mobileNav{
@@ -230,20 +276,18 @@
   gap: 10px;
   padding: 14px 0 18px 0;
   position: relative;
-
-  /* ✅ CRITICAL: don’t clip dropdown */
-  overflow: visible;
+  overflow: visible; /* ✅ don’t clip dropdown */
 }
 
 .mLink{
   width: 100%;
   padding: 14px 16px;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--menuCardBorder);
+  background: var(--menuCardBg);
 
   font-size: 17px;
-  color: rgba(255,255,255,0.88);
+  color: rgba(14,16,19,0.88);
   font-family: Poppins, Arial, sans-serif;
 
   display: flex;
@@ -255,12 +299,12 @@
   width: 100%;
   padding: 14px 16px;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.28);
-  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(3, 28, 82, 0.18);
+  background: rgba(3, 28, 82, 0.06);
 
   font-size: 17px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.96);
+  font-weight: 800;
+  color: rgba(14,16,19,0.95);
   font-family: Poppins, Arial, sans-serif;
 }
 
@@ -271,11 +315,11 @@
 }
 
 /* =========================================================
-   ✅ MOBILE Services dropdown (card dropdown menu)
+   ✅ MOBILE Services dropdown (CARD dropdown menu)
 ========================================================= */
 .mServicesWrap{
   position: relative;
-  z-index: 11;
+  z-index: 60; /* ✅ dropdown layer */
 }
 
 .mServicesBtn{
@@ -289,64 +333,73 @@
 .mChevron{
   width: 10px;
   height: 10px;
-  border-right: 2px solid rgba(255,255,255,0.85);
-  border-bottom: 2px solid rgba(255,255,255,0.85);
+  border-right: 2px solid rgba(14,16,19,0.80);
+  border-bottom: 2px solid rgba(14,16,19,0.80);
   transform: rotate(45deg);
-  transition: transform 0.18s ease, opacity 0.18s ease;
-  opacity: 0.85;
+  transition: transform .18s ease, opacity .18s ease;
+  opacity: 0.9;
 }
 .mChevron.open{
   transform: rotate(-135deg);
   opacity: 1;
 }
 
-/* Tap-outside backdrop (closes dropdown only) */
+/* Tap-outside backdrop (below dropdown, above page) */
 .mServicesBackdrop{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.15); /* optional soft dim */
+  background: rgba(0,0,0,0.15);
   border: none;
   padding: 0;
   margin: 0;
-  z-index: 10;
+  z-index: 50;
 }
 
-/* Base dropdown positioning */
+/* Dropdown positioning (above backdrop) */
 .mServicesDropdown{
   position: absolute;
   top: calc(100% + 12px);
   left: 0;
   right: 0;
-  transform: none;
-  z-index: 20;
+  z-index: 70;
 
-  /* ✅ ensure full card panel width */
   width: 100%;
   box-sizing: border-box;
+
+  animation: mDropIn .16s ease-out;
+  transform-origin: top center;
 }
 
-/* Mobile dropdown panel */
+@keyframes mDropIn{
+  from{ opacity: 0; transform: translateY(-6px) scale(0.985); }
+  to  { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* White dropdown sheet */
 .mServicesDropdownModern{
   padding: 10px;
   border-radius: 18px;
-
-  background: rgba(14, 18, 28, 0.92);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
+  background: var(--sheetBg);
+  border: 1px solid var(--sheetBorder);
+  box-shadow: var(--sheetShadow);
   display: grid;
   gap: 8px;
 }
 
-/* ✅ Button reset so the rows look like cards (not text) */
+/* ✅ Button reset so rows look like cards */
 .mSvcItem{
+  appearance: none;
+  -webkit-appearance: none;
   border: 0;
   outline: none;
   font: inherit;
   background: none;
+  color: inherit;
+  padding: 0;
+}
 
+/* Card row */
+.mSvcItem{
   width: 100%;
   display: flex;
   align-items: center;
@@ -355,9 +408,9 @@
   padding: 12px 12px;
   border-radius: 16px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  color: rgba(255,255,255,0.92);
+  background: var(--itemBg);
+  border: 1px solid var(--itemBorder);
+  color: var(--textDark);
 
   text-align: left;
   cursor: pointer;
@@ -367,8 +420,8 @@
 
 .mSvcItem:hover{
   transform: translateY(-1px);
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(255,255,255,0.16);
+  background: var(--itemBgHover);
+  border-color: rgba(3, 28, 82, 0.16);
 }
 .mSvcItem:active{ transform: translateY(0); }
 
@@ -378,11 +431,9 @@
   border-radius: 16px;
   display: grid;
   place-items: center;
-
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(3, 28, 82, 0.06);
+  border: 1px solid rgba(3, 28, 82, 0.10);
   flex: 0 0 auto;
-
   font-size: 18px;
 }
 
@@ -391,10 +442,11 @@
   font-weight: 900;
   font-size: 15px;
   letter-spacing: 0.01em;
+  color: var(--textDark);
 }
 .mSvcDesc{
   font-size: 12.5px;
-  color: rgba(255,255,255,0.70);
+  color: var(--textMutedDark);
   line-height: 1.25;
 }
 
@@ -404,27 +456,27 @@
   text-align: center;
   padding: 12px 14px;
   border-radius: 14px;
-
   text-decoration: none;
   font-weight: 900;
-
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.92);
+  background: rgba(3, 28, 82, 0.05);
+  border: 1px solid rgba(3, 28, 82, 0.12);
+  color: var(--textDark);
+  transition: background .16s ease, border-color .16s ease;
 }
-.mSvcAll:hover{ background: rgba(255,255,255,0.09); }
+.mSvcAll:hover{
+  background: rgba(3, 28, 82, 0.08);
+  border-color: rgba(3, 28, 82, 0.18);
+}
 
 /* =========================================================
-   ✅ Responsive header behavior
+   RESPONSIVE HEADER
 ========================================================= */
 @media (max-width: 900px){
-  :root{ --gutter: 22px; }
-
   .headerInner{
     display: grid;
     grid-template-columns: 44px 1fr 44px;
     align-items: center;
-    gap: 30px;
+    gap: 18px;
   }
 
   .navDesktop{ display: none; }
