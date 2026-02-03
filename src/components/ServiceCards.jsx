@@ -98,13 +98,6 @@ export default function ServiceCards() {
               ))}
             </ul>
           </div>
-
-          <footer className="serviceFooter">
-            <Link className="serviceLink" to={`/services#${s.id}`}>
-              Explore {s.title}
-              <span className="serviceLinkArrow" aria-hidden="true">→</span>
-            </Link>
-          </footer>
         </article>
       ))}
     </section>
