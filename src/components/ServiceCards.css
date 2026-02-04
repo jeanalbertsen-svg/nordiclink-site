@@ -17,12 +17,24 @@
   padding: 18px;
   background: #121417;
   box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+  margin-top:20px;
 }
 
 /* ✅ DESKTOP DEFAULT (bigger titles) */
 .serviceTitle{
   margin:0 0 10px;
   font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--neonLight);
+
+  text-shadow:
+    0 0 10px rgba(191,230,255,0.18),
+    0 0 18px rgba(191,230,255,0.10);
+}
+.serviceMeta{
+  margin:0 0 10px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--neonLight);
@@ -53,6 +65,12 @@
   text-underline-offset: 4px;
 }
 .serviceDeliverables {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: rgba(163, 191, 250, 0.75);
+  line-height: 1.5;
+}
+.serviceFocusList {
   margin: 6px 0 0;
   padding-left: 18px;
   color: rgba(163, 191, 250, 0.75);

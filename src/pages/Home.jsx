@@ -11,7 +11,7 @@ export default function Home() {
       <section className="hero">
         <div className="container heroInner">
           <div className="heroBadge">WELCOME</div>
-          <h1 className="heroTitle">Nordic–Asia<br/>Strategy &amp; Tech<br/>Consulting</h1>
+          <h1 className="heroTitle">NORDIC-ASIA<br/>STRATEGY &amp; TECH<br/>CONSULTING</h1>
           <p className="heroLead">
             Support organizations across Nordic and Asian markets in
             strategy, IT governance, and digital transformation.
