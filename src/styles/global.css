@@ -186,7 +186,7 @@ h6{ font-size: 16px; line-height: 1.35; }
 ========================= */
 
 .card{
-  background: var(--surface);
+  background: #031c52;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
