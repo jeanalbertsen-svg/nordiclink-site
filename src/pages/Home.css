@@ -116,7 +116,8 @@
 
   /* ✅ Mobile headline bigger but NOT insane */
   .heroTitle{
-    font-size: 120px;      /* ✅ good mobile size */
+    font-size: 80px;
+    font-weight:100;      /* ✅ good mobile size */
     line-height: 1.12;
     letter-spacing: -0.02em;
   }
@@ -130,7 +131,7 @@
 
   /* ✅ Badge slightly smaller but still readable */
   .heroBadge{
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 0.20em;
     margin-bottom: 14px;
   }
